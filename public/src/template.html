@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <base href="/">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+
+  <title>Tire Pressure</title>
+
+  <script>history.scrollRestoration = "manual"</script>
+  <link rel="stylesheet" href="dist/index.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div id="image-viewer" hidden>
+    <button id="close-image-viewer" class="icon-button">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <path
+          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+        <path d="M0 0h24v24H0z" fill="none" />
+      </svg>
+    </button>
+    <img id="artist-frame"></img>
+    <div id="image-loading" class="loading-indicator" hidden>Loading...</div>
+  </div>
+  <div id="main-content">
+    <div id="video-area">
+      <!--<canvas id="video"></canvas>-->
+      <img id="video" src="assets/video_frames/frame0001.png" />
+      <audio id="audio" src="assets/tire_pressure_audio.m4a" preload="auto"></audio>
+    </div>
+    <div id="about-page" hidden>
+      <h1>Tire Pressure Project App</h1>
+      <h3>Made with ❤ by <a href="https://twitter.com/ReefBlowPlay" target="_blank">@justbrian</a></h3>
+    </div>
+    <list id="profile-list">
+      <img id="tpplogo" src="assets/tpplogo.png" width="100px" height="100px" />
+    </list>
+    <footer id="video-controls">
+      <div id="playback-buttons">
+        <button id="volume-control" class="icon-button muted">
+          <svg class="volume-on-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path
+              d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" />
+            <path d="M0 0h24v24H0z" fill="none" />
+          </svg>
+          <svg class="volume-off-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path
+              d="M3.63 3.63c-.39.39-.39 1.02 0 1.41L7.29 8.7 7 9H4c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1h3l3.29 3.29c.63.63 1.71.18 1.71-.71v-4.17l4.18 4.18c-.49.37-1.02.68-1.6.91-.36.15-.58.53-.58.92 0 .72.73 1.18 1.39.91.8-.33 1.55-.77 2.22-1.31l1.34 1.34c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L5.05 3.63c-.39-.39-1.02-.39-1.42 0zM19 12c0 .82-.15 1.61-.41 2.34l1.53 1.53c.56-1.17.88-2.48.88-3.87 0-3.83-2.4-7.11-5.78-8.4-.59-.23-1.22.23-1.22.86v.19c0 .38.25.71.61.85C17.18 6.54 19 9.06 19 12zm-8.71-6.29l-.17.17L12 7.76V6.41c0-.89-1.08-1.33-1.71-.7zM16.5 12c0-1.77-1.02-3.29-2.5-4.03v1.79l2.48 2.48c.01-.08.02-.16.02-.24z" />
+          </svg>
+        </button>
+        <button id="frame-backward" class="icon-button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path d="M5.88 4.12L13.76 12l-7.88 7.88L8 22l10-10L8 2z" />
+            <path fill="none" d="M0 0h24v24H0z" />
+          </svg>
+        </button>
+        <button id="pause-play-control" class="icon-button paused">
+          <svg class="play-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path
+              d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+          </svg>
+          <svg class="pause-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path
+              d="M9 16h2V8H9v8zm3-14C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1-4h2V8h-2v8z" />
+          </svg>
+        </button>
+        <button id="frame-forward" class="icon-button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path d="M5.88 4.12L13.76 12l-7.88 7.88L8 22l10-10L8 2z" />
+            <path fill="none" d="M0 0h24v24H0z" />
+          </svg>
+        </button>
+        <p id="frame-count"></p>
+      </div>
+      <div id="seek-bar-container">
+        <input id="seek-bar" type="range" min="0" max="61" value="0" step="any">
+      </div>
+    </footer>
+  </div>
+
+  <script src="dist/bundle.js"></script>
+
+  <script src="/__/firebase/7.0.0/firebase-app.js"></script>
+  <script src="/__/firebase/7.0.0/firebase-analytics.js"></script>
+  <script src="/__/firebase/init.js"></script>
+</body>
+
+</html>
