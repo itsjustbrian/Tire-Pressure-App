@@ -1,4 +1,4 @@
-import "../styles/index.css";
+import "./index.css";
 import data from "./data";
 import { $ } from "./helpers";
 
@@ -23,21 +23,21 @@ const generateProfile = (profileData: any, idx: number) => {
   const profilePicSrc = (profileData.profile_pic && profileData.profile_pic.length) ? profileData.profile_pic :
     `https://avatars.io/twitter/${profileData.social_links.twitter}/medium`;
   listItem.innerHTML = `
-    <img class="profile-pic" src="${profilePicSrc}"></img>
-    <div class="line-item">
-      <span class="primary-line-item-text">${profileData.username}<span>
-      ${profileData.background ? '<div class="secondary-line-item-text">Background artist</div>' : ''}
-    </div>
-    <div class="social-links">
-      ${socialLinkTypes.map((type) => {
-    const id = profileData.social_links[type.name];
-    if (id && id.length)
-      return `<a href="${type.link(id)}" target="_blank" class="social-icon">
-                    <img src="assets/icons/${type.name}.png">
-                  </a>`;
-  }).join('')}
-    </div>
-  `;
+    <img class="profile-pic" src="${profilePicSrc}"></img>
+    <div class="line-item">
+      <span class="primary-line-item-text">${profileData.username}<span>
+      ${profileData.background ? '<div class="secondary-line-item-text">Background artist</div>' : ''}
+    </div>
+    <div class="social-links">
+      ${socialLinkTypes.map((type) => {
+        const id = profileData.social_links[type.name];
+        if (id && id.length)
+        return `<a href="${type.link(id)}" target="_blank" class="social-icon">
+                  <img src="assets/icons/${type.name}.png">
+                </a>`;
+      }).join('')}
+    </div>
+  `;
   return listItem;
 };
 
@@ -46,31 +46,30 @@ artistFrames.forEach((frame: Object, idx: number) => {
   profileList.append(generateProfile(frame, idx), $('tpplogo'));
 });
 
-// Me
+// Me
 const me = createListItem('justbrian');
 me.innerHTML = `
-  <img class="profile-pic" src="https://avatars.io/twitter/ReefBlowPlay/medium"></img>
-  <div class="line-item">
-    <span class="primary-line-item-text">justbrian<span>
-    <div class="secondary-line-item-text">App developer</div>
-  </div>
-  <div class="social-links">
-    <a href="https://twitter.com/ReefBlowPlay" target="_blank" class="social-icon">
-      <img src="assets/icons/twitter.png">
-    </a>
-  </div>
+  <img class="profile-pic" src="https://avatars.io/twitter/ReefBlowPlay/medium"></img>
+  <div class="line-item">
+    <span class="primary-line-item-text">justbrian<span>
+    <div class="secondary-line-item-text">App developer</div>
+  </div>
+  <div class="social-links">
+    <a href="https://twitter.com/ReefBlowPlay" target="_blank" class="social-icon">
+      <img src="assets/icons/twitter.png">
+    </a>
+  </div>
 `;
 profileList.append(me, $('tpplogo'));
 
-// Load artistFrames
+// Load artistFrames
 let videoFrames: Array<any> = [];
 for (let i = 0; i < 62; i++) {
   videoFrames[i] = { image: new Image(), artistIdx: null };
   videoFrames[i].image.src = `/assets/video_frames/frame${(i + 1).toString().padStart(4, '0')}.png`;
-  videoFrames[i].image.id = 'vide';
 }
 
-// Map image frames to artist frames and vice versa
+// Map image frames to artist frames and vice versa
 let imageIdx = 0;
 for (let i = 0; i < artistFrames.length; i++) {
   artistFrames[i].imageIdx = imageIdx;
@@ -85,16 +84,16 @@ const artistIdxToImageIdx = (artistIdx: number) => artistFrames[artistIdx].image
 
 
 
-// for (let i = 31; i < 54; i++) {
-//   //artistFrames[i].time_displayed = i * (2.483 / 53);
-//   //artistFrames[i].username += i;
-// }
+// for (let i = 31; i < 54; i++) {
+//   //artistFrames[i].time_displayed = i * (2.483 / 53);
+//   //artistFrames[i].username += i;
+// }
 
-// console.log(JSON.stringify(artistFrames));
+// console.log(JSON.stringify(artistFrames));
 
-// const offscreen = (document.getElementById('video') as HTMLCanvasElement).transferControlToOffscreen();
-// const worker = new Worker('static/video-worker.js');
-// worker.postMessage({ canvas: offscreen }, [offscreen]);
+// const offscreen = (document.getElementById('video') as HTMLCanvasElement).transferControlToOffscreen();
+// const worker = new Worker('static/video-worker.js');
+// worker.postMessage({ canvas: offscreen }, [offscreen]);
 
 let video = $('video') as HTMLImageElement;
 const audio = $('audio') as HTMLAudioElement;
@@ -114,42 +113,42 @@ const renderFrame = (imageIdx: number, source?: String) => {
 
   requestAnimationFrame(async () => {
 
-    // Hide the about page if it's active
+    // Hide the about page if it's active
     if (!$('about-page').hidden) await showAboutPage(false);
 
-    // Change frame
+    // Change frame
     video.src = videoFrames[imageIdx].image.src;
-    //video.replaceWith(videoFrames[imageIdx].image); video = videoFrames[imageIdx].image;
+    //video.replaceWith(videoFrames[imageIdx].image); video = videoFrames[imageIdx].image;
 
-    // Seek audio
+    // Seek audio
     if (!playingVideo || source === 'seek') audio.currentTime = (1 / 24) * imageIdx;
 
-    // Change selected profile
+    // Change selected profile
     $('profile-' + currentArtistData.username).classList.remove('selected');
     const selectedProfile = $('profile-' + newArtistData.username);
     selectedProfile.classList.add('selected');
     selectedProfile.scrollIntoView({ behavior: playingVideo || seekingDuringPlayback || source === 'seek' ? 'auto' : 'smooth' });
 
 
-    // Enable/disable buttons
+    // Enable/disable buttons
     let frameForwardButtonDisabled = artistIdx === artistFrames.length - 1;
     let frameBackwardButtonDisabled = artistIdx === 0;
     if (playingVideo || seekingDuringPlayback) frameForwardButtonDisabled = frameBackwardButtonDisabled = true;
     frameForwardButton.disabled = frameForwardButtonDisabled;
     frameBackwardButton.disabled = frameBackwardButtonDisabled;
 
-    // Change seekbar
+    // Change seekbar
     if (!seeking && source !== 'seek') seekBar.value = `${imageIdx}`;
 
-    // Change play/pause button
+    // Change play/pause button
     if (playingVideo) playPauseButton.classList.remove('paused');
     else playPauseButton.classList.add('paused');
 
-    // Change volume control
+    // Change volume control
     audio.muted = muted;
     muted ? volumeControl.classList.add('muted') : volumeControl.classList.remove('muted');
 
-    // Set frame number
+    // Set frame number
     frameCount.innerText = `${(artistIdx + 1).toString().padStart(2, '0')}/${artistFrames.length}`;
   });
 };
@@ -171,7 +170,7 @@ const showAboutPage = (show = true) => {
 profileList.addEventListener('click', (event) => {
   let targetNode: HTMLElement | null = event.target as HTMLElement;
   while (true) {
-    if (!targetNode || targetNode.nodeName === 'A') return; // Ignore if social link clicked
+    if (!targetNode || targetNode.nodeName === 'A') return; // Ignore if social link clicked
     if (targetNode.nodeName === 'ITEM') break;
     targetNode = targetNode.parentElement;
   }
@@ -205,7 +204,7 @@ playPauseButton.addEventListener('click', async (event) => {
 
 seekBar.addEventListener('input', async (event) => {
   const imageIdx = Math.round(parseFloat((<HTMLInputElement>event.currentTarget).value));
-  // convert and then convert back to get starting image frame for artist
+  // convert and then convert back to get starting image frame for artist
   if (currentImageIdx !== imageIdx) renderFrame(artistIdxToImageIdx(imageIdxToArtistIdx(imageIdx)), 'seek');
 });
 
@@ -278,14 +277,14 @@ const onMediaQuery = async (event: MediaQueryListEvent | MediaQueryList) => {
   $(event.matches ? 'profile-list' : 'main-content').append($('video-controls'));
 };
 
-const smallScreen = window.matchMedia("(max-width: 720px)");
+const smallScreen = window.matchMedia("(max-width: 720px)");
 onMediaQuery(smallScreen);
 smallScreen.addEventListener('change', onMediaQuery);
 
 const ro = new ResizeObserver((entries: any) => {
   for (let entry of entries) {
     if (entry.contentRect.height > 0) {
-      document.body.style.cssText = `scroll-padding-top: ${entry.contentRect.height}px`;
+      document.body.style.cssText = `scroll-padding-top: ${entry.contentRect.height}px`;
       scrollToCurrentProfile();
     } else if (document.scrollingElement) {
       document.scrollingElement.scrollTop = document.scrollingElement.scrollHeight;

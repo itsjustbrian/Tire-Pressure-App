@@ -9,7 +9,6 @@
   <title>Tire Pressure</title>
 
   <script>history.scrollRestoration = "manual"</script>
-  <link rel="stylesheet" href="dist/index.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet">
 </head>
 
@@ -27,8 +26,7 @@
   </div>
   <div id="main-content">
     <div id="video-area">
-      <!--<canvas id="video"></canvas>-->
-      <img id="video" src="assets/video_frames/frame0001.png" />
+      <img id="video" src="assets/video_frames/frame0001.png"/>
       <audio id="audio" src="assets/tire_pressure_audio.m4a" preload="auto"></audio>
     </div>
     <div id="about-page" hidden>
@@ -36,7 +34,7 @@
       <h3>Made with ❤ by <a href="https://twitter.com/ReefBlowPlay" target="_blank">@justbrian</a></h3>
     </div>
     <list id="profile-list">
-      <img id="tpplogo" src="assets/tpplogo.png" width="100px" height="100px" />
+      <img id="tpplogo" src="assets/icons/tpplogo.png" width="100px" height="100px"/>
     </list>
     <footer id="video-controls">
       <div id="playback-buttons">
@@ -83,11 +81,9 @@
     </footer>
   </div>
 
-  <script src="dist/bundle.js"></script>
-
-  <script src="/__/firebase/7.0.0/firebase-app.js"></script>
-  <script src="/__/firebase/7.0.0/firebase-analytics.js"></script>
-  <script src="/__/firebase/init.js"></script>
+  <script async src="/__/firebase/7.0.0/firebase-app.js"></script>
+  <script async src="/__/firebase/7.0.0/firebase-analytics.js"></script>
+  <script async src="/__/firebase/init.js"></script>
 </body>
 
 </html>

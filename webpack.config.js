@@ -6,11 +6,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = (env, { mode }) => ({
-  entry: './public/src/index.ts',
+  entry: './src/index.ts',
   devtool: (mode !== 'production') ? 'inline-source-map' : 'source-map',
   output: {
     filename: (mode !== 'production') ? 'bundle.js' : 'bundle.js',
-    path: path.resolve(__dirname + '/public/', 'dist')
+    path: path.resolve(__dirname, 'public')
   },
   optimization: {
     minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({
@@ -29,7 +29,7 @@ module.exports = (env, { mode }) => ({
     }),
     new HtmlWebpackPlugin({
       filename: "index.html",
-      template: "public/template.html"
+      template: "src/template.html",
     })
   ],
   module: {
