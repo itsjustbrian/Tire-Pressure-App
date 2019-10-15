@@ -107,7 +107,13 @@ button, input, .profile {
   }
 
   #video {
-    max-height: 424px;
+    max-height: 368px;
+  }
+
+  #video-area {
+    width: 100%;
+    height: calc((3 / 4) * 100vw);
+    max-height: 368px;
   }
 
   #video-controls {
@@ -119,6 +125,7 @@ button, input, .profile {
   #profile-list {
     flex: 1 1 auto;
     background-attachment: local;
+    justify-content: flex-end;
     /* overflow-y: auto; */
   }
 
@@ -129,6 +136,7 @@ button, input, .profile {
 
 #main-content {
   width: 100%;
+  min-height: 100vh;
   background-color: #000037;
 }
 #image-viewer:not([hidden]) + #main-content {
@@ -188,6 +196,7 @@ button, input, .profile {
   border-radius: 5px 5px 0 0;
   background-color: rgba(255, 255, 255, .15);
   backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 }
 
 #main-content.about-page-active #video-controls {
@@ -280,6 +289,7 @@ button, input, .profile {
 #profile-list {
   display: flex;
   flex-direction: column;
+  overflow-x: hidden; 
   /* overflow-y: auto; */
   /* scroll-snap-type: y mandatory; */
   /* overscroll-behavior: contain; */
@@ -297,7 +307,7 @@ button, input, .profile {
 
 #tpplogo {
   align-self: center;
-  margin: 7.5px 0;
+  margin-top: 7.5px;
 }
 
 /* #profile-list::-webkit-scrollbar {
@@ -356,14 +366,20 @@ button, input, .profile {
 }
 
 .social-icon {
-  width: 24px;
-  height: 24px;
-  margin-left: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 24px;
+  min-height: 24px;
 }
+.social-icon > svg { fill: #ffffff; }
+.social-icon:hover > svg { fill: rgba(255, 255, 255, 0.6); }
+svg.twitter, svg.instagram { width: 20px; height: 20px; }
+svg.newgrounds { width: 22px; height: 22px; }
+svg.youtube { width: 24px; height: 24px }
 
-.social-icon > img {
-  width: inherit;
-  height: inherit;
+.social-icon:not(:first-child) {
+  margin-left: 13px;
 }
 
 #volume-control > .volume-on-icon { display: block; }

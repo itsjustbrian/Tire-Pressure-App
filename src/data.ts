@@ -10,7 +10,7 @@ export default {
         instagram: "yugsly",
         newgrounds: ""
       },
-      num_video_frames: 2
+      num_video_frames: 3
     },
     {
       username: "Fly",
@@ -58,7 +58,7 @@ export default {
         instagram: "",
         newgrounds: ""
       },
-      num_video_frames: 2
+      num_video_frames: 1
     },
     {
       username: "An Axe",
@@ -70,7 +70,7 @@ export default {
         instagram: "",
         newgrounds: ""
       },
-      num_video_frames: 2
+      num_video_frames: 1
     },
     {
       username: "chelsea akpan",
@@ -82,7 +82,7 @@ export default {
         instagram: "",
         newgrounds: ""
       },
-      num_video_frames: 2
+      num_video_frames: 1
     },
     {
       username: "Seanatar",
@@ -262,7 +262,7 @@ export default {
         instagram: "",
         newgrounds: ""
       },
-      num_video_frames: 1
+      num_video_frames: 2
     },
     {
       username: "Ben Saint",
@@ -329,7 +329,7 @@ export default {
       profile_pic: "",
       frame_image: "",
       social_links: {
-        twitter: "PetSoundsOfLove",
+        twitter: "OyeOyeEsteban",
         youtube: "",
         instagram: "",
         newgrounds: ""
@@ -338,7 +338,7 @@ export default {
     },
     {
       username: "Jonathan Sherin",
-      profile_pic: "assets/profile_pics/jonsherin.jpg",
+      profile_pic: "assets/profile_pics/jonsherin",
       frame_image: "",
       social_links: {
         twitter: "",
@@ -536,9 +536,9 @@ export default {
         twitter: "EathanCool",
         youtube: "MrLeonshake",
         instagram: "ethansbeyondcool",
-        newgrounds: ""
+        newgrounds: "eathan"
       },
-      num_video_frames: 1
+      num_video_frames: 2
     },
     {
       username: "Atrox",
@@ -554,7 +554,7 @@ export default {
     },
     {
       username: "Robotjones",
-      profile_pic: "assets/profile_pics/newgrounds_default.gif",
+      profile_pic: "assets/icons/robotjones/robotjones",
       frame_image: "",
       social_links: {
         twitter: "",
@@ -626,7 +626,7 @@ export default {
     },
     {
       username: "Kanti",
-      profile_pic: "assets/profile_pics/newgrounds_default.gif",
+      profile_pic: "assets/profile_pics/newgrounds_default",
       frame_image: "",
       social_links: {
         twitter: "",
@@ -659,25 +659,6 @@ export default {
         newgrounds: ""
       },
       num_video_frames: 1
-    }
-  ],
-
-  social_link_types: [
-    {
-      name: "twitter",
-      link: (id: string) => `https://twitter.com/${id}`
-    },
-    {
-      name: "youtube",
-      link: (id: string) => `https://www.youtube.com/user/${id}`
-    },
-    {
-      name: "instagram",
-      link: (id: string) => `https://www.instagram.com/${id}`
-    },
-    {
-      name: "newgrounds",
-      link: (id: string) => `https://${id}.newgrounds.com`
     }
   ]
 }

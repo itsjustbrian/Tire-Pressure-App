@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = (env, { mode }) => ({
   entry: './src/index.ts',
@@ -23,14 +24,22 @@ module.exports = (env, { mode }) => ({
     })],
   },
   plugins: [
-    new CleanWebpackPlugin(),
+    // new CleanWebpackPlugin({
+    //   disable: (mode !== 'production')
+    // }),
+    new CopyWebpackPlugin([{
+      context: './asset_staging',
+      from: './',
+      to: path.resolve(__dirname, 'public', 'assets'),
+    }]),
     new MiniCssExtractPlugin({
       filename: (mode !== 'production') ? 'index.css' : 'index.css',
     }),
     new HtmlWebpackPlugin({
       filename: "index.html",
       template: "src/template.html",
-    })
+      inject: false
+    }),
   ],
   module: {
     rules: [
@@ -48,19 +57,8 @@ module.exports = (env, { mode }) => ({
           { loader: 'css-loader', options: { sourceMap: (mode !== 'production') } },
         ],
       },
-      {
-        test: /\.(gif|png|jpe?g|svg)$/i,
-        use: [
-          'file-loader',
-          {
-            loader: 'image-webpack-loader',
-            options: {
-              disable: (mode !== 'production'),
-            },
-          },
-        ],
-      },
-      { test: /\.html$/, loader: 'html-loader' }
+      // { test: /\.(gif|png|jpe?g|svg)$/i, loader: 'file-loader' },
+      // { test: /\.html$/, loader: 'html-loader' }
     ]
   },
   resolve: {

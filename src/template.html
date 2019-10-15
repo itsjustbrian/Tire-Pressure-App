@@ -9,6 +9,11 @@
   <title>Tire Pressure</title>
 
   <script>history.scrollRestoration = "manual"</script>
+
+  <% for (var css in htmlWebpackPlugin.files.css) { %>
+  <link href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet">
+  <% } %>
+
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet">
 </head>
 
@@ -26,15 +31,17 @@
   </div>
   <div id="main-content">
     <div id="video-area">
-      <img id="video" src="assets/video_frames/frame0001.png"/>
-      <audio id="audio" src="assets/tire_pressure_audio.m4a" preload="auto"></audio>
+      <img id="video" width="480" height="360" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEABAQEBAREBIUFBIZGxgbGSUiHx8iJTgoKygrKDhVNT41NT41VUtbSkVKW0uHal5eaoecg3yDnL2pqb3u4u7///8BEBAQEBEQEhQUEhkbGBsZJSIfHyIlOCgrKCsoOFU1PjU1PjVVS1tKRUpbS4dqXl5qh5yDfIOcvampve7i7v/////CABEIAAYACAMBIgACEQEDEQH/xAAUAAEAAAAAAAAAAAAAAAAAAAAF/9oACAEBAAAAABP/xAAUAQEAAAAAAAAAAAAAAAAAAAAE/9oACAECEAAAAGf/xAAUAQEAAAAAAAAAAAAAAAAAAAAE/9oACAEDEAAAAC//xAAaEAACAgMAAAAAAAAAAAAAAAABAgASAxMh/9oACAEBAAE/AN18NVQB1PWn/8QAGREAAgMBAAAAAAAAAAAAAAAAAQIAAxEy/9oACAECAQE/AKmZQcY9Gf/EABkRAAEFAAAAAAAAAAAAAAAAAAEAAhEhQf/aAAgBAwEBPwBwBisX/9k="></img>
+      <audio id="audio" src="assets/tire_pressure_audio.m4a" muted preload="auto"></audio>
     </div>
     <div id="about-page" hidden>
       <h1>Tire Pressure Project App</h1>
       <h3>Made with ❤ by <a href="https://twitter.com/ReefBlowPlay" target="_blank">@justbrian</a></h3>
     </div>
     <list id="profile-list">
-      <img id="tpplogo" src="assets/icons/tpplogo.png" width="100px" height="100px"/>
+      <picture id="tpplogo"><source type="image/webp" srcset="assets/icons/tpplogo/tpplogo-100.webp 100w, assets/icons/tpplogo/tpplogo-200.webp 200w, assets/icons/tpplogo/tpplogo-300.webp 300w" sizes="100px"/> <source type="image/png" srcset="assets/icons/tpplogo/tpplogo-100.png 100w, assets/icons/tpplogo/tpplogo-200.png 200w, assets/icons/tpplogo/tpplogo-300.png 300w" sizes="100px"/>
+        <img src="assets/icons/tpplogo/tpplogo-200.png" alt="Tire Pressure Project Logo" width="100px" height="100px"/>
+      </picture>
     </list>
     <footer id="video-controls">
       <div id="playback-buttons">
@@ -81,9 +88,13 @@
     </footer>
   </div>
 
-  <script async src="/__/firebase/7.0.0/firebase-app.js"></script>
-  <script async src="/__/firebase/7.0.0/firebase-analytics.js"></script>
-  <script async src="/__/firebase/init.js"></script>
+  <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
+  <script src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
+  <% } %>
+
+  <script src="/__/firebase/7.0.0/firebase-app.js"></script>
+  <script src="/__/firebase/7.0.0/firebase-analytics.js"></script>
+  <script src="/__/firebase/init.js"></script>
 </body>
 
 </html>
