@@ -42,7 +42,7 @@ import { $, supportsWebp, social_link_types } from "./helpers";
       ${profilePic}
       <div class="line-item">
         <span class="primary-line-item-text">${profileData.username}<span>
-        ${profileData.background ? '<div class="secondary-line-item-text">Background artist</div>' : ''}
+        ${profileData.sub_title ? `<div class="secondary-line-item-text">${profileData.sub_title}</div>` : ''}
       </div>
       <div class="social-links">
         ${socialLinkTypes.map((type: any) => {
@@ -68,6 +68,7 @@ import { $, supportsWebp, social_link_types } from "./helpers";
   profileList.append(generateProfile({
     username: 'justbrian',
     social_links: { twitter: 'ReefBlowPlay' },
+    sub_title: 'App developer'
   }), $('tpplogo'));
 
   // Load artistFrames and map image frames to artist frames and vice versa
@@ -264,7 +265,7 @@ import { $, supportsWebp, social_link_types } from "./helpers";
 
   closeImageViewerButton.addEventListener('click', (event) => {
     $('image-viewer').hidden = true;
-    document.body.style.overflowY = 'initial';
+    document.body.style.overflowY = '';
   });
 
   function onVideoClicked(event: any) {
