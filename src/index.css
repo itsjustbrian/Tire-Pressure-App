@@ -1,3 +1,8 @@
+
+:root {
+  --min-list-width: 400px;
+}
+
 *[hidden] {
   display: none !important;
 }
@@ -41,13 +46,17 @@ button, input, .profile, #video-area {
   -webkit-tap-highlight-color: transparent;
 }
 
+button::-moz-focus-inner {
+  border: 0;
+}
+
 @media screen and (min-width: 720px) {
 
   #main-content {
     /* overflow: hidden; */
     height: 100vh;
     display: grid;
-    grid-template-columns: 341px minmax(0, 1fr);
+    grid-template-columns: var(--min-list-width) minmax(0, 1fr);
     /* grid-template-rows: minmax(360px, calc((9 / 16) * 100vw)) auto; */
     grid-template-rows: minmax(0, 1fr) 115px;
     grid-template-areas:
@@ -75,12 +84,8 @@ button, input, .profile, #video-area {
   #profile-list {
     grid-area: profile-list;
     /* border-right: 1px solid black; */
-  }
-
-  #profile-list {
     overflow-y: auto;
-
-    scroll-padding-top: 45%;
+    /* scroll-padding-top: 45%; */
   }
 
   #about-page {
@@ -186,17 +191,22 @@ button, input, .profile, #video-area {
   /* padding-top: 24px; */
 }
 
+
 #video-controls {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   min-height: 115px;
   width: 100%;
-  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2);
   border-radius: 5px 5px 0 0;
-  background-color: rgba(255, 255, 255, .15);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
+  background-color: rgba(0, 0, 55, .5);
+}
+@supports (backdrop-filter: blur(5px)) or (-webkit-backdrop-filter: blur(5px)) {
+  #video-controls {
+    background-color: rgba(255, 255, 255, .15);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+  }
 }
 
 #main-content.about-page-active #video-controls {
@@ -292,9 +302,9 @@ button, input, .profile, #video-area {
   flex-direction: column;
   overflow-x: hidden; 
   /* overflow-y: auto; */
-  /* scroll-snap-type: y mandatory; */
+  /* scroll-snap-type: y proximity; */
   /* overscroll-behavior: contain; */
-  min-width: 341px;
+  min-width: var(--min-list-width);
   max-width: 100%;
   background-image:
     linear-gradient( 

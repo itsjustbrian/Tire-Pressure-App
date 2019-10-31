@@ -7,8 +7,9 @@
     "build": "webpack --mode production",
     "watch": "webpack --watch --mode development",
     "serve": "http-server -p 5000",
+    "serve-firebase": "firebase serve",
     "sync": "browser-sync start --proxy \"http://localhost:5000\" --files \"public\" --no-open --no-ghost-mode",
-    "start": "concurrently --kill-others \"npm run watch\" \"npm run serve\" \"npm run sync\""
+    "start": "concurrently --kill-others \"npm run watch\" \"npm run serve-firebase\" \"npm run sync\""
   },
   "author": "",
   "license": "ISC",

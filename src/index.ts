@@ -2,7 +2,25 @@ import "./index.css";
 import data from "./data.json";
 import { $, supportsWebp, social_link_types } from "./helpers";
 
-(async () => {
+const minListWidth = 400;
+const smallScreen = window.matchMedia("(max-width: 720px)");
+
+document.addEventListener('DOMContentLoaded', async () => {
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBUFQbnpxvzWLsnmwJ3V_9l-3QRNfu_Y9I",
+    authDomain: "tire-pressure-project.firebaseapp.com",
+    databaseURL: "https://tire-pressure-project.firebaseio.com",
+    projectId: "tire-pressure-project",
+    storageBucket: "tire-pressure-project.appspot.com",
+    messagingSenderId: "594805679759",
+    appId: "1:594805679759:web:d003cce18f56b08fd372fa",
+    measurementId: "G-DRK34XYMLJ"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const analytics = firebase.analytics();
+
   const artistFrames: any = data.artist_frames;
   const socialLinkTypes = social_link_types;
   let videoFrames: Array<any> = [];
@@ -46,12 +64,12 @@ import { $, supportsWebp, social_link_types } from "./helpers";
       </div>
       <div class="social-links">
         ${socialLinkTypes.map((type: any) => {
-          const id = profileData.social_links[type.name];
-          if (id && id.length)
-          return `<a href="${type.link(id)}" target="_blank" class="social-icon">
+      const id = profileData.social_links[type.name];
+      if (id && id.length)
+        return `<a href="${type.link(id)}" target="_blank" class="social-icon">
                     ${logoMap[type.name]}
                   </a>`;
-        }).join('')}
+    }).join('')}
       </div>
     `;
     return listItem;
@@ -73,8 +91,8 @@ import { $, supportsWebp, social_link_types } from "./helpers";
 
   // Load artistFrames and map image frames to artist frames and vice versa
   const webpsupported = await supportsWebp();
-  const maxVideoSize = Math.max(screen.availHeight > 720 ? screen.availHeight - 341 : screen.availHeight,
-    screen.availWidth > 720 ? screen.availWidth - 341 : screen.availWidth);
+  const maxVideoSize = Math.max(screen.availHeight > 720 ? screen.availHeight - minListWidth : screen.availHeight,
+    screen.availWidth > 720 ? screen.availWidth - minListWidth : screen.availWidth);
   let imageIdx = 0;
   for (let i = 0; i < artistFrames.length; i++) {
     artistFrames[i].imageIdx = imageIdx;
@@ -147,7 +165,8 @@ import { $, supportsWebp, social_link_types } from "./helpers";
       const selectedProfile = $('profile-' + newArtistData.username);
       selectedProfile.classList.add('selected');
       //selectedProfile.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
-      selectedProfile.scrollIntoView({ behavior: playingVideo || seekingDuringPlayback || source === 'seek' ? 'auto' : 'smooth' });
+      //selectedProfile.scrollIntoView({ behavior: playingVideo || seekingDuringPlayback || source === 'seek' ? 'auto' : 'smooth' });
+      scrollToProfile(artistIdx, playingVideo || seekingDuringPlayback || source === 'seek' ? 'auto' : 'smooth');
 
 
       // Enable/disable buttons
@@ -174,8 +193,8 @@ import { $, supportsWebp, social_link_types } from "./helpers";
       requestAnimationFrame(() => {
         const currentArtistData = artistFrames[imageIdxToArtistIdx(currentImageIdx)];
         $('profile-' + currentArtistData.username).classList.remove('selected');
-        show ? $('profile-justbrian').classList.add('selected') : $('profile-justbrian').classList.remove('selected')
-        show ? $('main-content').classList.add('about-page-active') : $('main-content').classList.remove('about-page-active');
+        $('profile-justbrian').classList[show ? 'add' : 'remove']('selected');
+        $('main-content').classList[show ? 'add' : 'remove']('about-page-active');
         $('about-page').hidden = !show;
         $('video-area').hidden = show;
         requestAnimationFrame(resolve);
@@ -287,31 +306,37 @@ import { $, supportsWebp, social_link_types } from "./helpers";
   }
   video.addEventListener('click', onVideoClicked);
 
-  const scrollToCurrentProfile = () => {
-    const currentArtistData = artistFrames[imageIdxToArtistIdx(currentImageIdx)];
-    const selectedProfile = $('profile-' + currentArtistData.username);
-    selectedProfile.scrollIntoView({ behavior: 'auto' });
+  const scrollToProfile = (artistIdx: number, behavior: 'auto' | 'smooth' | undefined = 'auto') => {
+    (smallScreen.matches ? window : $('profile-list')).scrollTo({
+      top: artistIdx * 56,
+      behavior
+    });
   };
 
-  // const smallScreen = window.matchMedia("(max-width: 720px)");
   // const onMediaQuery = (event: MediaQueryListEvent | MediaQueryList) => {
   //   $(event.matches ? 'profile-list' : 'main-content').append($('video-controls'));
   // };
   // onMediaQuery(smallScreen);
   // smallScreen.addEventListener('change', onMediaQuery);
 
-  const ro = new ResizeObserver((entries: any) => {
-    for (let entry of entries) {
-      if (entry.contentRect.height > 0) {
-        document.body.style.cssText = `scroll-padding-top: ${entry.contentRect.height}px`;
-        scrollToCurrentProfile();
-      } else if (document.scrollingElement) {
-        document.scrollingElement.scrollTop = document.scrollingElement.scrollHeight;
-      }
-    }
-  });
-  ro.observe($('video-area'));
+  // const ro = new ResizeObserver((entries: any) => {
+  //   for (let entry of entries) {
+  //     if (entry.contentRect.height > 0) {
+  //       document.body.style.cssText = `scroll-padding-top: ${entry.contentRect.height}px`;
+  //       document.documentElement.style.cssText = `scroll-padding-top: ${entry.contentRect.height}px`; // For firefox
+  //       scrollToCurrentProfile();
+  //     } else if (document.scrollingElement) {
+  //       document.scrollingElement.scrollTop = document.scrollingElement.scrollHeight;
+  //     }
+  //   }
+  // });
+  // ro.observe($('video-area'));
+
+  window.onresize = () => {
+    scrollToProfile($('about-page').hidden ? imageIdxToArtistIdx(currentImageIdx) : artistFrames.length);
+  }
 
 
   renderFrame(currentImageIdx);
-})();
+
+});
