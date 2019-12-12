@@ -11,6 +11,10 @@
   visibility: hidden;
 }
 
+picture > img.lazyload:not([src]), img.lazyload:not([src]) {
+	opacity: 0.001;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -19,6 +23,16 @@ a {
 ul {
   margin: 0;
   padding: 0;
+}
+
+hr {
+  border-color: #ffffff;
+  border-width: 1px 0 0;
+  margin: 20px auto;
+  box-sizing: content-box;
+  height: 0;
+  width: 60%;
+  overflow: visible;
 }
 
 body {
@@ -50,7 +64,7 @@ button::-moz-focus-inner {
   border: 0;
 }
 
-@media screen and (min-width: 720px) {
+@media screen and (min-width: 800px) {
 
   #main-content {
     /* overflow: hidden; */
@@ -73,6 +87,7 @@ button::-moz-focus-inner {
   }
 
   #video-area {
+    position: relative;
     grid-area: video;
   }
 
@@ -93,7 +108,7 @@ button::-moz-focus-inner {
   }
 }
 
-@media screen and (max-width: 720px) {
+@media screen and (max-width: 800px) {
 
   #main-content {
     height: 100%;
@@ -106,24 +121,23 @@ button::-moz-focus-inner {
   #video-area {
     flex: 0 1 auto;
     position: sticky;
+    position: -webkit-sticky;
     top: 0;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     z-index: 1;
-  }
-
-  #video {
+    width: 100%;
+    height: calc((3 / 4) * 100vw);
     max-height: 368px;
   }
 
-  #video-area {
-    width: 100%;
-    height: calc((3 / 4) * 100vw);
+  #video, #video-placeholder {
     max-height: 368px;
   }
 
   #video-controls {
     flex: 0 1 auto;
     position: sticky;
+    position: -webkit-sticky;
     bottom: 0;
   }
 
@@ -221,11 +235,26 @@ button::-moz-focus-inner {
   max-width: 610px;
 }
 
-#video {
+#video, #video-placeholder {
   vertical-align: top;
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+
+#video-placeholder {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  opacity: 1;
+  z-index: 5;
+  border: none;
+}
+#video-placeholder.fade-out {
+  opacity: 0;
+  transition: opacity 0.2s linear;
 }
 
 #playback-buttons {
@@ -247,6 +276,7 @@ button::-moz-focus-inner {
   background: transparent;
   padding: 0 5px;
   cursor: pointer;
+  touch-action: none;
 }
 #seek-bar:focus {
   background-color: rgba(255, 255, 255, 0.06);
@@ -292,6 +322,7 @@ button::-moz-focus-inner {
   flex: 0 1 auto;
   text-align: center;
   position: sticky;
+  position: -webkit-sticky;
   top: 0;
   background-color: #000037;
   z-index: 1;
@@ -318,9 +349,15 @@ button::-moz-focus-inner {
   will-change: transform;
 }
 
+#profile-list.unresolved {
+  padding-top: 100vh;
+}
+
 #tpplogo {
+  width: 100px;
+  height: 100px;
   align-self: center;
-  margin-top: 7.5px;
+  margin: 7.5px 0;
 }
 
 /* #profile-list::-webkit-scrollbar {

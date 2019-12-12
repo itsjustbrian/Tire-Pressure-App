@@ -12,3 +12,6 @@ declare class ResizeObserver {
 declare module '*.png'
 
 declare var firebase: any;
+
+declare module 'lazysizes';
+declare var lazySizesConfig: any;

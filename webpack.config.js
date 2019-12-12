@@ -10,10 +10,22 @@ module.exports = (env, { mode }) => ({
   entry: './src/index.ts',
   devtool: (mode !== 'production') ? 'inline-source-map' : 'source-map',
   output: {
-    filename: (mode !== 'production') ? 'bundle.js' : 'bundle.js',
+    filename: (mode !== 'production') ? '[name].js' : '[name].[contenthash].js',
     path: path.resolve(__dirname, 'public')
   },
   optimization: {
+    moduleIds: 'hashed',
+    runtimeChunk: 'single',
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /node_modules/,
+          chunks: 'initial',
+          name: 'vendors',
+          enforce: true
+        },
+      }
+    },
     minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({
       cssProcessorOptions: {
         map: {
@@ -21,7 +33,7 @@ module.exports = (env, { mode }) => ({
           annotation: true,
         }
       }
-    })],
+    })]
   },
   plugins: [
     // new CleanWebpackPlugin({
@@ -33,12 +45,16 @@ module.exports = (env, { mode }) => ({
       to: path.resolve(__dirname, 'public', 'assets'),
     }]),
     new MiniCssExtractPlugin({
-      filename: (mode !== 'production') ? 'index.css' : 'index.css',
+      filename: (mode !== 'production') ? '[name].css' : '[name].[contenthash].css',
     }),
     new HtmlWebpackPlugin({
       filename: "index.html",
-      template: "src/template.html",
-      inject: false
+      template: "!!prerender-loader?string!src/template.html",
+      minify: {
+        collapseWhitespace: true,
+        removeComments: true,
+        minifyJS: true
+      }
     }),
   ],
   module: {

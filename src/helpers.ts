@@ -12,6 +12,8 @@ export const $ = (id: string) => {
   return document.getElementById(id) as HTMLElement || null;
 };
 
+export const getProfileElement = (username: String) => $('profile-' + username.replace(/ /g, '-'));
+
 export async function supportsWebp() {
   if (!self.createImageBitmap) return false;
 

@@ -7,6 +7,26 @@
       "**/node_modules/**"
     ],
     "rewrites": [
+    ],
+    "headers": [
+      {
+        "source": "**/*.@(jpg|jpeg|gif|png|webp|m4a)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=172800"
+          }
+        ]
+      },
+      {
+        "source": "**/*.@(js|css)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=31557600"
+          }
+        ]
+      }
     ]
   }
 }
