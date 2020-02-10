@@ -130,7 +130,7 @@ button::-moz-focus-inner {
     max-height: 368px;
   }
 
-  #video, #video-placeholder {
+  #video {
     max-height: 368px;
   }
 
@@ -235,26 +235,11 @@ button::-moz-focus-inner {
   max-width: 610px;
 }
 
-#video, #video-placeholder {
+#video {
   vertical-align: top;
   width: 100%;
   height: 100%;
   object-fit: contain;
-}
-
-#video-placeholder {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
-  opacity: 1;
-  z-index: 5;
-  border: none;
-}
-#video-placeholder.fade-out {
-  opacity: 0;
-  transition: opacity 0.2s linear;
 }
 
 #playback-buttons {
