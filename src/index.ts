@@ -1,23 +1,33 @@
-const config = require("../build-config.json");
+const config = require("../build-config");
+const { createPicture } = require("../utils/common-utils");
 
 import "./index.css";
 import lazySizes from "lazysizes";
-import { $, supportsWebp, social_link_types, getProfileElement } from "./helpers";
+import { $, aFrame, htmlToTemplate } from "./helpers";
 
 lazySizes.cfg.loadMode = 1;
 lazySizes.cfg.expand = 300;
 
-const minListWidth = 400;
+const listItemHeight = 56;
 const responsiveWidth = 800
 const smallScreen = window.matchMedia(`(max-width: ${responsiveWidth}px)`);
 
-const socialLinkTypes = social_link_types;
-let videoFrames: Array<any> = [];
-let currentImageIdx: number = 0;
+const developerId = 'ReefBlowPlay';
+const videoFrames: Array<HTMLPictureElement> = [];
+//const frameStageQueue: Array<HTMLElement> = [];
+let currentFrameIdx: number = 0;
 let playingVideo = false;
 let seeking = false;
 let seekingDuringPlayback = false;
 let muted = true;
+let repeatActive = false;
+
+// Delay loading of inactive frames
+// window.addEventListener('fonts-loaded', () => {
+//   for (let frameElement of frameStageQueue) {
+//     $('frame-stage').append(frameElement);
+//   }
+// });
 
 document.addEventListener('DOMContentLoaded', async () => {
 
@@ -35,120 +45,96 @@ document.addEventListener('DOMContentLoaded', async () => {
   firebase.initializeApp(firebaseConfig);
   const analytics = firebase.analytics();
 
-  let video = $('video') as HTMLImageElement;
+  let video = null as HTMLPictureElement | null;
   const audio = $('audio') as HTMLAudioElement;
   const volumeControl = $('volume-control') as HTMLButtonElement;
   const frameForwardButton = $('frame-forward') as HTMLButtonElement;
   const frameBackwardButton = $('frame-backward') as HTMLButtonElement;
+  const repeatButton = $('repeat') as HTMLButtonElement;
   const playPauseButton = $('pause-play-control') as HTMLButtonElement;
   const seekBar = $('seek-bar') as HTMLInputElement;
-  const closeImageViewerButton = $('close-image-viewer') as HTMLButtonElement;
+  const closeModalButton = $('close-modal') as HTMLButtonElement;
   const profileList = $('profile-list') as HTMLElement;
+  const videoFramePlaceholder = $('placeholder') as HTMLElement;
+  const videoFrameLoadingSpinner = document.querySelector('#video-area .loading-spinner') as HTMLElement;
+  videoFrameLoadingSpinner.hidden = false;
   const frameCount = $('frame-count');
 
-  const htmlToElement = (html) => {
-    var template = document.createElement('template');
-    html = html.trim();
-    template.innerHTML = html;
-    return template.content.firstChild;
-  }
-
-  const createVideoFrameElement = () => {
-    html`<picture id="video" class="video-frame">
-      <source type="image/webp" srcset="${createSrcSet('webp')}" data-sizes="${sizes}"/>
-      <source type="image/jpeg" srcset="${createSrcSet('jpg')}" data-sizes="${sizes}"/>
-      <img class="video-frame" data-src="${createSrcFile(path, Math.max(...srcSizes), 'jpg')}" alt="${alt}" width="${width}" height="${height}"/>
-    </picture>`
-  };
-
-
-  const videoFrames = [];
-  for (let i = 0; i < config.num_frames; i++) {
-    document.createElement('picture');
-    videoFrames.push()
-  }
-
-  // Load artistFrames and map image frames to artist frames and vice versa
-  const webpsupported = await supportsWebp();
-  const maxVideoSize = Math.max(screen.availHeight > responsiveWidth ? screen.availHeight - minListWidth : screen.availHeight,
-    screen.availWidth > responsiveWidth ? screen.availWidth - minListWidth : screen.availWidth);
-  let imageIdx = 0;
-  for (let i = 0; i < artistFrames.length; i++) {
-    artistFrames[i].imageIdx = imageIdx;
-    for (let j = 0; j < artistFrames[i].num_video_frames; j++) {
-      videoFrames[imageIdx] = { image: new Image(), artistIdx: i };
-      const image = videoFrames[imageIdx].image;
-      image.id = 'video';
-      image.idx = imageIdx;
-      image.src = `/assets/video_frames/frame${i + 1}-${maxVideoSize < 480 ? '320' : '480'}.${webpsupported ? 'webp' : 'jpg'}`;
-      image.alt = `${artistFrames[i].username}'s fram`;
-      image.onload = function changeSrc() {
-        if (currentImageIdx === this.idx) {
-          video.src = this.src;
-        }
-      };
-      videoFrames[imageIdx].artistIdx = i;
-      imageIdx++;
+  const getProfileFromIndex = (idx) => {
+    const profileElement = document.querySelector(`item[data-idx="${idx}"]`) as HTMLElement;
+    return {
+      id: profileElement.id,
+      name: profileElement.dataset.name,
+      element: profileElement
     }
   }
 
-  const imageIdxToArtistIdx = (imageIdx: number) => videoFrames[imageIdx].artistIdx;
-  const artistIdxToImageIdx = (artistIdx: number) => artistFrames[artistIdx].imageIdx;
+  for (let i = 0; i < config.num_frames; i++) {
+    const profile = getProfileFromIndex(i);
+    const framePictureOptions = {
+      path: config.image_sets.video_frames.path + (i + 1),
+      srcSizes: config.image_sets.video_frames.sizes,
+      alt: `${profile.name}'s frame`
+    };
+    const videoFrameTemplate = htmlToTemplate(createPicture(framePictureOptions));
+    const imgElement = videoFrameTemplate.querySelector('img') as HTMLElement;
+    const videoFrameElement = videoFrameTemplate.firstChild as HTMLElement;
+    imgElement.style.cssText = 'opacity: 0;';
+    imgElement.id = 'video';
+    imgElement.onload = () => {
+      imgElement.style.cssText = 'opacity: 1; transition: opacity 0.5s ease 0s;';
+      videoFrameElement.dataset.loaded = 'true';
+      if (i === currentFrameIdx) {
+        videoFrameLoadingSpinner.hidden = true;
+      }
+    };
+  
+    $('frame-stage').append(videoFrameElement);
+    videoFrames.push(videoFrameElement);
+  }
 
+  const renderFrame = async (frameIdx: number, source?: String) => {
+    const currentProfile = getProfileFromIndex(currentFrameIdx);
+    const newProfile = getProfileFromIndex(frameIdx);
+    currentFrameIdx = frameIdx;
 
-
-  // for (let i = 31; i < 54; i++) {
-  //   //artistFrames[i].time_displayed = i * (2.483 / 53);
-  //   //artistFrames[i].username += i;
-  // }
-
-  // console.log(JSON.stringify(artistFrames));
-
-  // const offscreen = (document.getElementById('video') as HTMLCanvasElement).transferControlToOffscreen();
-  // const worker = new Worker('static/video-worker.js');
-  // worker.postMessage({ canvas: offscreen }, [offscreen]);
-
-  const renderFrame = (imageIdx: number, source?: String) => {
-    const artistIdx = imageIdxToArtistIdx(imageIdx);
-    const currentArtistData = artistFrames[imageIdxToArtistIdx(currentImageIdx)];
-    const newArtistData = artistFrames[artistIdx];
-    currentImageIdx = imageIdx;
-
-    requestAnimationFrame(async () => {
+    return animationFramePromise(async () => {
 
       // Change frame
-      video.src = videoFrames[imageIdx].image.src;
-      if (video.hidden) video.hidden = false;
-      // video.replaceWith(videoFrames[imageIdx].image);
-      // video.removeEventListener('click', onVideoClicked);
-      // video = videoFrames[imageIdx].image;
-      // video.addEventListener('click', onVideoClicked);
+      // video.src = videoFrames[imageIdx].image.src;
+      // if (video.hidden) video.hidden = false;
+      if (video) {
+        video.removeEventListener('click', onVideoClicked);
+        video.replaceWith(videoFrames[frameIdx]);
+        videoFrameLoadingSpinner.hidden = !!videoFrames[frameIdx].dataset.loaded;
+      } else {
+        $('video-area').append(videoFrames[frameIdx]);
+      }
+      video = videoFrames[frameIdx];
+      video.addEventListener('click', onVideoClicked);
 
       // Hide the about page if it's active
       if (!$('about-page').hidden) await showAboutPage(false);
 
       // Seek audio
-      if (!playingVideo || source === 'seek') audio.currentTime = (1 / 24) * imageIdx;
+      if (!playingVideo || source === 'seek' || source === 'repeat') audio.currentTime = (1 / 24) * frameIdx;
 
       // Change selected profile
-      getProfileElement(currentArtistData.username).classList.remove('selected');
-      //$('profile-' + currentArtistData.username).style.backgroundColor = "rgba(255, 255, 255, 0)";
-      const selectedProfile = getProfileElement(newArtistData.username);
-      selectedProfile.classList.add('selected');
-      //selectedProfile.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
-      //selectedProfile.scrollIntoView({ behavior: playingVideo || seekingDuringPlayback || source === 'seek' ? 'auto' : 'smooth' });
-      scrollToProfile(artistIdx, playingVideo || seekingDuringPlayback || source === 'seek' ? 'auto' : 'smooth');
+      currentProfile.element.classList.remove('selected');
+      newProfile.element.classList.add('selected');
 
+      // Auto scroll to selected profile
+      scrollToProfile(frameIdx, playingVideo || seekingDuringPlayback || source === 'seek' ? 'auto' : 'smooth');
 
       // Enable/disable buttons
-      let frameForwardButtonDisabled = artistIdx === artistFrames.length - 1;
-      let frameBackwardButtonDisabled = artistIdx === 0;
+      let frameForwardButtonDisabled = frameIdx === config.num_frames - 1;
+      let frameBackwardButtonDisabled = frameIdx === 0;
       if (playingVideo || seekingDuringPlayback) frameForwardButtonDisabled = frameBackwardButtonDisabled = true;
       frameForwardButton.disabled = frameForwardButtonDisabled;
       frameBackwardButton.disabled = frameBackwardButtonDisabled;
 
       // Change seekbar
-      if (!seeking && source !== 'seek') seekBar.value = `${imageIdx}`;
+      if (!seeking && source !== 'seek') seekBar.value = `${frameIdx}`;
 
       // Change play/pause button
       if (playingVideo) playPauseButton.classList.remove('paused');
@@ -160,14 +146,20 @@ document.addEventListener('DOMContentLoaded', async () => {
   };
 
   const showAboutPage = (show = true) => {
+    return animationFramePromise(() => {
+      const currentProfile = getProfileFromIndex(currentFrameIdx);
+      currentProfile.element.classList.remove('selected');
+      $(developerId).classList[show ? 'add' : 'remove']('selected');
+      $('main-content').classList[show ? 'add' : 'remove']('about-page-active');
+      $('about-page').hidden = !show;
+      $('video-area').hidden = show;
+    });
+  };
+
+  const animationFramePromise = (callback) => {
     return new Promise((resolve) => {
       requestAnimationFrame(() => {
-        const currentArtistData = artistFrames[imageIdxToArtistIdx(currentImageIdx)];
-        getProfileElement(currentArtistData.username).classList.remove('selected');
-        getProfileElement('justbrian').classList[show ? 'add' : 'remove']('selected');
-        $('main-content').classList[show ? 'add' : 'remove']('about-page-active');
-        $('about-page').hidden = !show;
-        $('video-area').hidden = show;
+        callback();
         requestAnimationFrame(resolve);
       });
     });
@@ -180,28 +172,26 @@ document.addEventListener('DOMContentLoaded', async () => {
       if (targetNode.nodeName === 'ITEM') break;
       targetNode = targetNode.parentElement;
     }
-    if (targetNode.id === 'profile-justbrian') showAboutPage();
-    else if (targetNode.dataset.idx) renderFrame(artistIdxToImageIdx(parseInt(targetNode.dataset.idx)));
+    if (targetNode.id === developerId) showAboutPage();
+    else if (targetNode.dataset.idx) renderFrame((parseInt(targetNode.dataset.idx)));
   });
 
   volumeControl.addEventListener('click', (event) => {
     muted = !muted;
     audio.muted = muted;
-    muted ? volumeControl.classList.add('muted') : volumeControl.classList.remove('muted');
+    volumeControl.classList[muted ? 'add' : 'remove']('muted');
   });
 
   frameForwardButton.addEventListener('click', (event) => {
-    const artistIdx = imageIdxToArtistIdx(currentImageIdx);
-    if (artistIdx < artistFrames.length - 1) renderFrame(artistIdxToImageIdx(artistIdx + 1));
+    if (currentFrameIdx < config.num_frames - 1) renderFrame(currentFrameIdx + 1);
   });
 
   frameBackwardButton.addEventListener('click', (event) => {
-    const artistIdx = imageIdxToArtistIdx(currentImageIdx);
-    if (artistIdx > 0) renderFrame(artistIdxToImageIdx(artistIdx - 1));
+    if (currentFrameIdx > 0) renderFrame(currentFrameIdx - 1);
   });
 
   playPauseButton.addEventListener('click', async (event) => {
-    if (currentImageIdx === videoFrames.length - 1) {
+    if (currentFrameIdx === config.num_frames - 1) {
       await renderFrame(0);
       playVideo();
     } else {
@@ -209,10 +199,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   });
 
+  repeatButton.addEventListener('click', () => {
+    repeatButton.classList.toggle('active');
+    repeatActive = !repeatActive;
+  });
+
   seekBar.addEventListener('input', (event) => {
-    const imageIdx = Math.round(parseFloat((<HTMLInputElement>event.currentTarget).value));
-    // convert and then convert back to get starting image frame for artist
-    if (currentImageIdx !== imageIdx) renderFrame(artistIdxToImageIdx(imageIdxToArtistIdx(imageIdx)), 'seek');
+    const frameIdx = Math.round(parseFloat((<HTMLInputElement>event.currentTarget).value));
+    if (currentFrameIdx !== frameIdx) renderFrame(frameIdx, 'seek');
   }, { passive: true });
 
   seekBar.addEventListener('pointerdown', (event) => {
@@ -238,10 +232,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     playingVideo = true;
     audio.play();
     intervalId = setInterval(() => {
-      if (currentImageIdx < videoFrames.length - 1) {
-        renderFrame(currentImageIdx + 1);
+      if (currentFrameIdx < videoFrames.length - 1) {
+        renderFrame(currentFrameIdx + 1);
       }
-      else pauseVideo();
+      else if (repeatActive) {
+        renderFrame(0, 'repeat');
+      } else pauseVideo();
     }, (1 / 24) * 1000);
   };
   const pauseVideo = (shouldRender = true) => {
@@ -249,52 +245,67 @@ document.addEventListener('DOMContentLoaded', async () => {
       clearInterval(intervalId);
       audio.pause();
       playingVideo = false;
-      if (shouldRender) renderFrame(currentImageIdx);
+      if (shouldRender) renderFrame(currentFrameIdx);
     }
   }
 
-  closeImageViewerButton.addEventListener('click', (event) => {
-    $('image-viewer').hidden = true;
+  closeModalButton.addEventListener('click', (event) => {
+    $('modal').hidden = true;
     document.body.style.overflowY = '';
   });
 
   function onVideoClicked(event: any) {
-    const fileName = artistFrames[imageIdxToArtistIdx(currentImageIdx)].username.replace(/ /g, '_') + '.png';
-    const artistFrameImage = $('artist-frame') as HTMLImageElement;
-    if (fileName && fileName.length && fileName !== artistFrameImage.dataset.fileName) {
-      artistFrameImage.hidden = true;
-      $('image-loading').hidden = false;
-      artistFrameImage.onload = (event) => {
-        $('image-loading').hidden = true;
-        artistFrameImage.hidden = false;
+    const currentArtistFrame = $('artist-frame') as HTMLImageElement;
+    const loadingIndicator = document.querySelector('#modal .loading-spinner') as HTMLElement;
+    if (!currentArtistFrame || (currentArtistFrame.dataset.idx && currentFrameIdx !== parseInt(currentArtistFrame.dataset.idx))) {
+      const profile = getProfileFromIndex(currentFrameIdx);
+      const newArtistFrame = document.createElement('img');
+      newArtistFrame.id = 'artist-frame';
+      newArtistFrame.classList.add('artist-frame');
+      newArtistFrame.alt = `${profile.name}'s high-res frame`;
+      newArtistFrame.onload = () => {
+        loadingIndicator.hidden = true;
+        newArtistFrame.hidden = false;
       };
-      artistFrameImage.dataset.fileName = fileName;
-      artistFrameImage.src = `assets/artist_frames/${fileName}`;
+      newArtistFrame.dataset.idx = '' + currentFrameIdx;
+      newArtistFrame.hidden = true;
+
+      currentArtistFrame ? currentArtistFrame.replaceWith(newArtistFrame) : $('modal').append(newArtistFrame);
+      loadingIndicator.hidden = false;
+
+      newArtistFrame.src = config.artist_frames_path + (currentFrameIdx + 1) + '.png';
     }
     document.body.style.overflowY = 'hidden';
-    $('image-viewer').hidden = false;
-    $('close-image-viewer').focus();
+    $('modal').hidden = false;
+    $('close-modal').focus();
   }
-  video.addEventListener('click', onVideoClicked);
+  //video.addEventListener('click', onVideoClicked);
 
-  const scrollToProfile = (artistIdx: number, behavior: 'auto' | 'smooth' | undefined = 'auto') => {
+  const scrollToProfile = (frameIdx: number, behavior: 'auto' | 'smooth' | undefined = 'auto') => {
     (smallScreen.matches ? window : profileList).scrollTo({
-      top: artistIdx * 60,
+      top: frameIdx * listItemHeight,
       behavior
     });
   };
 
-  const ro = new ResizeObserver((entries: any) => {
-    for (let entry of entries) {
-      if (entry.contentRect.height > 0) {
-        scrollToProfile($('about-page').hidden ? imageIdxToArtistIdx(currentImageIdx) : artistFrames.length);
-      } else if (document.scrollingElement) {
-        document.scrollingElement.scrollTop = document.scrollingElement.scrollHeight;
-      }
-    }
-  });
-  ro.observe($('video-area'));
+  renderFrame(currentFrameIdx);
 
-  renderFrame(currentImageIdx);
+  (async () => {
+    if ('ResizeObserver' in window === false) {
+      const module = await import('@juggle/resize-observer');
+      window['ResizeObserver'] = module.ResizeObserver;
+    }
+    
+    const ro = new ResizeObserver((entries: any) => {
+      for (let entry of entries) {
+        if (entry.contentRect.height > 0) {
+          scrollToProfile($('about-page').hidden ? currentFrameIdx : config.num_frames - 1);
+        } else if (document.scrollingElement) {
+          document.scrollingElement.scrollTop = document.scrollingElement.scrollHeight;
+        }
+      }
+    });
+    ro.observe($('video-area'));
+  })();
 
 });

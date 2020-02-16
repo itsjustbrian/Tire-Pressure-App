@@ -59,6 +59,14 @@ button, input, .profile, #video-area {
   user-select: none;
   -webkit-tap-highlight-color: transparent;
 }
+.primary-line-item-text {
+  -webkit-touch-callout: text;
+  -webkit-user-select: text;
+  -khtml-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
 
 button::-moz-focus-inner {
   border: 0;
@@ -126,12 +134,7 @@ button::-moz-focus-inner {
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     z-index: 1;
     width: 100%;
-    height: calc((3 / 4) * 100vw);
-    max-height: 368px;
-  }
-
-  #video {
-    max-height: 368px;
+    height: calc((9 / 21) * 100vw);
   }
 
   #video-controls {
@@ -158,11 +161,11 @@ button::-moz-focus-inner {
   min-height: 100vh;
   background-color: #000037;
 }
-#image-viewer:not([hidden]) + #main-content {
+#modal:not([hidden]) + #main-content {
   filter: blur(10px);
 }
 
-#image-viewer {
+#modal {
   width: 100%;
   height: 100%;
   margin-bottom: 50px;
@@ -176,7 +179,7 @@ button::-moz-focus-inner {
   -webkit-backdrop-filter: blur(5px); */
 }
 /* Makes sure background color covers page properly on mobile */
-#image-viewer:after {
+#modal:after {
   content: '';
   display: block;
   position: absolute;
@@ -186,17 +189,17 @@ button::-moz-focus-inner {
   background: inherit;
   pointer-events: none;
 }
-#image-viewer > img {
-  position: absolute;
-  max-width: 100%;
-  max-height: 100%;
-  height: auto;
-}
-#close-image-viewer {
+#close-modal {
   z-index: 3;
   position: absolute;
   top: 12px;
   left: 12px;
+}
+
+.artist-frame {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 #video-area {
@@ -205,6 +208,30 @@ button::-moz-focus-inner {
   /* padding-top: 24px; */
 }
 
+#placeholder {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  position: absolute;
+}
+
+.loading-spinner {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  left: 50%;
+  margin-left: -50px;
+  top: 50%;
+  margin-top: -50px;
+  animation: spin 3s linear infinite;
+  will-change: transform;
+}
+
+@keyframes spin { 
+  100% {
+    transform: rotate(360deg);
+  } 
+}
 
 #video-controls {
   display: flex;
@@ -239,6 +266,7 @@ button::-moz-focus-inner {
   vertical-align: top;
   width: 100%;
   height: 100%;
+  position: absolute;
   object-fit: contain;
 }
 
@@ -338,11 +366,11 @@ button::-moz-focus-inner {
   padding-top: 100vh;
 }
 
-#tpplogo {
+.tpplogo {
+  align-self: center;
+  margin-bottom: 10px;
   width: 100px;
   height: 100px;
-  align-self: center;
-  margin: 7.5px 0;
 }
 
 /* #profile-list::-webkit-scrollbar {
@@ -356,7 +384,8 @@ button::-moz-focus-inner {
   /* scroll-snap-align: center; */
   /* width: 100%; */
   min-height: 56px;
-  padding: 0 16px;
+  padding-left: 16px;
+  padding-right: 4px;
   cursor: pointer;
 }
 
@@ -401,21 +430,16 @@ button::-moz-focus-inner {
 }
 
 .social-icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-width: 24px;
-  min-height: 24px;
+  display: block;
+  width: 24px;
+  height: 24px;
+  padding: 12px
 }
 .social-icon > svg { fill: #ffffff; }
 .social-icon:hover > svg { fill: rgba(255, 255, 255, 0.6); }
 svg.twitter, svg.instagram { width: 20px; height: 20px; }
 svg.newgrounds { width: 22px; height: 22px; }
 svg.youtube { width: 24px; height: 24px }
-
-.social-icon:not(:first-child) {
-  margin-left: 13px;
-}
 
 #volume-control > .volume-on-icon { display: block; }
 #volume-control.muted > .volume-on-icon { display: none; }
@@ -500,4 +524,11 @@ svg.youtube { width: 24px; height: 24px }
 }
 #frame-backward:enabled:active > svg {
   transform: translateX(-3px) scale(-0.95);
+}
+
+#repeat svg {
+  opacity: 0.7;
+}
+#repeat.active svg {
+  opacity: 1;
 }

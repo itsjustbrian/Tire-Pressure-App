@@ -1,42 +1,62 @@
 const sharp = require('sharp');
+const fs = require('fs');
 
-const inputFileFormat = (id, path) => `${path}/${id}.png`;
-const outputFileFormat = (id, path, width, format) => `${path}/${id}-${width}.${format}`;
+const defaultOptionsMap = {
+  'jpg': {
+    function: 'jpeg',
+    options: {
+      progressive: true
+    }
+  },
+  'png': {
+    function: 'png',
+  },
+  'webp': {
+    function: 'webp',
+  }
+}
 
-const resizeToJpeg = (id, width, path) => sharp(inputFileFormat(id, path))
-  .resize(width, null)
-  .jpeg({ progressive: true })
-  .toFile(outputFileFormat(id, path, width, 'jpg'));
-
-const resizeToWebp = (id, width, path) => sharp(inputFileFormat(id, path))
-  .resize(width, null)
-  .webp()
-  .toFile(outputFileFormat(id, path, width, 'webp'));
-
-const resize = (id, path, widths) => {
-  return Promise.all(widths.map((width) =>
-    Promise.all([
-      resizeToJpeg(id, width, path),
-      resizeToWebp(id, width, path)
-    ])
-    .catch((error) => {
-      console.error('Error resizing image for id: ' + id, error.message);
-    })));
+const resizeFile = (id, path, inputFormat, outputFormat, width, userOptions) => {
+  const defaultOptions = defaultOptionsMap[outputFormat].options;
+  let options = {};
+  if (defaultOptions && userOptions && userOptions[outputFormat]) {
+    options = Object.assign(defaultOptions, userOptions[outputFormat]);
+  }
+  return sharp(`${path}${id}.${inputFormat}`)
+    .resize(width, null)
+    [defaultOptionsMap[outputFormat].function](options)
+    .toFile(`${path}${id}-${width}.${outputFormat}`);
 };
 
-const createPicture = (path, srcSizes, sizes, alt, width, height) => {
-  const createSrcFile = (path, size, format) => `${path}-${size}.${format}`;
-  const createSrcSet = (format) => srcSizes.map((size) => `${createSrcFile(path, size, format)} ${size}w,`).join(' ');
-  return `
-    <picture class="profile-pic">
-      <source type="image/webp" data-srcset="${createSrcSet('webp')}" data-sizes="${sizes}"/>
-      <source type="image/jpeg" data-srcset="${createSrcSet('jpg')}" data-sizes="${sizes}"/>
-      <img class="profile-pic lazyload" data-src="${createSrcFile(path, Math.max(...srcSizes), 'jpg')}" alt="${alt}" width="${width}" height="${height}"/>
-    </picture>
-  `;
+const resize = (id, path, inputFormat, outputFormats, widths, options) => {
+  return Promise.all(widths.map((width) =>
+    Promise.all(outputFormats.map((outputFormat) =>
+      resizeFile(id, path, inputFormat, outputFormat, width, options)))));
+};
+
+const base64Prefix = 'data:image/jpeg;base64,';
+
+const base64Image = (path) => {
+  return base64Prefix + fs.readFileSync(path, 'base64');
+};
+
+const dataIterator = (data) => {
+  return {
+    *[Symbol.iterator]() {
+      for (let main_artist of data.main_frame_artists) {
+        yield main_artist;
+      }
+      yield data.app_dev;
+      yield data.bg_artist;
+      for (let extra_artist of data.extra_frame_artists) {
+        yield extra_artist;
+      }
+    }
+  }
 };
 
 module.exports = {
   resize,
-  createPicture
+  dataIterator,
+  base64Image
 };

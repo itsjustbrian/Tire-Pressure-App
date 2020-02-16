@@ -6,6 +6,7 @@ const r = require('request');
 const rp = require('request-promise');
 const cheerio = require('cheerio');
 const del = require('del');
+const { dataIterator } = require('../utils/build-utils');
 
 const getSiteData = (uri) => rp({ uri, transform: (body) => cheerio.load(body) });
 
@@ -34,7 +35,7 @@ const downloadFile = ((uri, dir) => {
 
 const main = () => {
   let downloadCount = 0;
-  for (let artist of data) {
+  for (let artist of dataIterator(data)) {
     const twitterId = artist.social_links.twitter.id;
     getTwitterProfileImageLink(twitterId).then((link) => {
       return link;
@@ -44,7 +45,7 @@ const main = () => {
     }).then((link) => {
       downloadCount++;
       console.log('Downloaded', downloadCount, 'images');
-      return downloadFile(link, path.join(config.project_dir, config.profile_pics_path, `${artist.social_links.twitter.id}.png`));
+      return downloadFile(link, path.join(config.project_dir, config.image_sets.profile_pics.path, `${artist.social_links.twitter.id}.png`));
     }).catch((error) => {
       console.error('Error getting image link for ' + twitterId + ' using Instagram');
     });

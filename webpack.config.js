@@ -3,8 +3,8 @@ const TerserJSPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 //const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-//const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = (env, { mode }) => ({
   entry: './src/index.ts',
@@ -39,17 +39,17 @@ module.exports = (env, { mode }) => ({
     // new CleanWebpackPlugin({
     //   disable: (mode !== 'production')
     // }),
-    // new CopyWebpackPlugin([{
-    //   context: './asset_staging',
-    //   from: './',
-    //   to: path.resolve(__dirname, 'public', 'assets'),
-    // }]),
+    new CopyWebpackPlugin([{
+      context: './assets',
+      from: './',
+      to: path.resolve(__dirname, 'public', 'assets'),
+    }]),
     new MiniCssExtractPlugin({
       filename: (mode !== 'production') ? '[name].css' : '[name].[contenthash].css',
     }),
     new HtmlWebpackPlugin({
       filename: "index.html",
-      template: "src/template.html",
+      template: "src/index.html",
       minify: {
         collapseWhitespace: true,
         removeComments: true,

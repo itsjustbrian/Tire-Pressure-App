@@ -3,11 +3,26 @@ module.exports = {
   project_dir: __dirname,
   src_path: '/src/',
   icons_path: '/assets/icons/',
-  profile_pics_path: '/assets/profile-pics/',
-  video_frames_path: '/assets/video-frames/',
+  artist_frames_path: '/assets/artist-frames/',
   data_path: '/data/',
-  profile_pic_sizes: [40, 80, 120],
-  video_frame_sizes: [400, 800, 1200, 1600, 2000],
   social_link_types: ['newgrounds', 'instagram', 'youtube', 'twitter'],
   num_frames: 60,
+
+  image_sets: {
+    profile_pics: {
+      path: '/assets/profile-pics/',
+      sizes: [40, 80, 120],
+      outputFormats: ['jpg', 'webp'],
+    },
+    video_frames: {
+      path: '/assets/video-frames/',
+      sizes: [500, 900, 1300, 1700, 2100],
+      outputFormats: ['jpg', 'webp'],
+    },
+    logos: {
+      path: '/assets/tpplogo/',
+      sizes: [100, 200, 300, 400],
+      outputFormats: ['png', 'webp'],
+    },
+  },
 };

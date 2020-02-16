@@ -7,7 +7,7 @@ glob('./*.mp4', (er, files) => {
   const fileName = files[0];
   new FfmpegCommand()
     .input(fileName)
-    .output(path.join(config.project_dir, config.video_frames_path, '%d.png'))
+    .output(path.join(config.project_dir, config.image_sets.video_frames.path, '%d.png'))
     .on('start', (commandLine) => {
       console.log('Spawned Ffmpeg with command: ' + commandLine);
     })
