@@ -5,7 +5,8 @@ const defaultOptionsMap = {
   'jpg': {
     function: 'jpeg',
     options: {
-      progressive: true
+      progressive: true,
+      quality: 90
     }
   },
   'png': {
@@ -13,25 +14,31 @@ const defaultOptionsMap = {
   },
   'webp': {
     function: 'webp',
+    quality: 90
   }
 }
 
-const resizeFile = (id, path, inputFormat, outputFormat, width, userOptions) => {
+const formatResizedFile = (path, id, width, outputFormat) => `${path}${id}-${width}.${outputFormat}`;
+
+const resizeFile = async (id, path, inputFormat, outputFormat, width, userOptions) => {
   const defaultOptions = defaultOptionsMap[outputFormat].options;
   let options = {};
   if (defaultOptions && userOptions && userOptions[outputFormat]) {
     options = Object.assign(defaultOptions, userOptions[outputFormat]);
   }
-  return sharp(`${path}${id}.${inputFormat}`)
+  await sharp(`${path}${id}.${inputFormat}`)
     .resize(width, null)
     [defaultOptionsMap[outputFormat].function](options)
-    .toFile(`${path}${id}-${width}.${outputFormat}`);
+    .toFile(formatResizedFile(path, id, width, outputFormat));
+  return formatResizedFile(path, id, width, outputFormat);
 };
 
-const resize = (id, path, inputFormat, outputFormats, widths, options) => {
-  return Promise.all(widths.map((width) =>
+const resize = async (id, path, inputFormat, outputFormats, widths, options) => {
+  const newFiles = await Promise.all(widths.map((width) =>
     Promise.all(outputFormats.map((outputFormat) =>
       resizeFile(id, path, inputFormat, outputFormat, width, options)))));
+  
+  return newFiles.flat(Infinity);
 };
 
 const base64Prefix = 'data:image/jpeg;base64,';

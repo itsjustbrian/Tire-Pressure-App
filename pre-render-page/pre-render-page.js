@@ -6,10 +6,46 @@ const { resize, base64Image } = require('../utils/build-utils');
 const config = require('../build-config');
 const data = require('../data/data.json');
 const gm = require('gm');
+const del = require('del');
+const ncp = require('ncp');
 
 gmAsync = (cmd, outFile) => new Promise((resolve) => cmd.write(outFile, resolve));
+ncpAsync = (src, dest) => new Promise((resolve) => ncp(src, dest, resolve));
+
+// const fileHash = (filename, algorithm = 'md5') => {
+//   return new Promise((resolve, reject) => {
+//     // Algorithm depends on availability of OpenSSL on platform
+//     // Another algorithms: 'sha1', 'md5', 'sha256', 'sha512' ...
+//     let shasum = crypto.createHash(algorithm);
+//     try {
+//       let s = fs.ReadStream(filename)
+//       s.on('data', function (data) {
+//         shasum.update(data)
+//       })
+//       // making digest
+//       s.on('end', function () {
+//         const hash = shasum.digest('hex')
+//         return resolve(hash);
+//       })
+//     } catch (error) {
+//       return reject('calc fail');
+//     }
+//   });
+// }
 
 try {(async () => {
+
+  const publicAssetsPath = path.join(config.project_dir, '/public/assets');
+  await del(publicAssetsPath, {force: true});
+  await ncpAsync(path.join(config.project_dir, '/assets'), publicAssetsPath);
+
+  // for (let setName of Object.keys(config.image_sets)) {
+  //   const setConfig = config.image_sets[setName];
+  //   for (let fileName of fs.readdirSync(path.join(config.project_dir, '/public', setConfig.path))) {
+  //     const filePath = path.join(config.project_dir, '/public', setConfig.path, fileName);
+  //     fs.renameSync(filePath, filePath.replace('.', `-v${config.version}.`));
+  //   }
+  // }
 
   const genIconLink = (href, fileName) => {
     //const svg = fs.readFileSync(path.join(config.project_dir, config.icons_path, `${fileName}.svg`));
@@ -37,17 +73,13 @@ try {(async () => {
     item.attr('id', id);
     item.attr('data-name', name);
     item.append(`
-      ${createPicture(profilePicOptions)}
-      <div class="line-item">
-        <span class="primary-line-item-text">${name}</span>
-        ${subTitle ? `<div class="secondary-line-item-text">${subTitle}</div>` : ''}
-      </div>
-      <div class="social-links">
-        ${config.social_link_types.map((linkType) => {
-          const socialLink = socialLinks[linkType];
-          return !!socialLink ? genIconLink(socialLink.url, socialLink.name) : '';
-        }).join('')}
-      </div>
+      <a class="profile-link" href="${socialLinks.twitter.url}" target="_blank" rel="noopener">
+        ${createPicture(profilePicOptions)}
+        <div class="line-item">
+          <div class="primary-line-item-text">${name}</div>
+          ${subTitle ? `<div class="secondary-line-item-text">${subTitle}</div>` : ''}
+        </div>
+      </a>
     `);
     return item;
   };

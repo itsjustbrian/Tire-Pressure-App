@@ -13,6 +13,7 @@ const responsiveWidth = 800
 const smallScreen = window.matchMedia(`(max-width: ${responsiveWidth}px)`);
 
 const developerId = 'ReefBlowPlay';
+const backgroundArtistId = 'voidknife';
 const videoFrames: Array<HTMLPictureElement> = [];
 //const frameStageQueue: Array<HTMLElement> = [];
 let currentFrameIdx: number = 0;
@@ -113,9 +114,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       video = videoFrames[frameIdx];
       video.addEventListener('click', onVideoClicked);
 
-      // Hide the about page if it's active
-      if (!$('about-page').hidden) await showAboutPage(false);
-
       // Seek audio
       if (!playingVideo || source === 'seek' || source === 'repeat') audio.currentTime = (1 / 24) * frameIdx;
 
@@ -145,17 +143,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   };
 
-  const showAboutPage = (show = true) => {
-    return animationFramePromise(() => {
-      const currentProfile = getProfileFromIndex(currentFrameIdx);
-      currentProfile.element.classList.remove('selected');
-      $(developerId).classList[show ? 'add' : 'remove']('selected');
-      $('main-content').classList[show ? 'add' : 'remove']('about-page-active');
-      $('about-page').hidden = !show;
-      $('video-area').hidden = show;
-    });
-  };
-
   const animationFramePromise = (callback) => {
     return new Promise((resolve) => {
       requestAnimationFrame(() => {
@@ -165,6 +152,22 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   };
 
+  const openAboutPage = () => {
+    clearModal();
+    $('modal-content').innerHTML = `
+      <div id="about-page">
+        <h1>Tire Pressure App</h1>
+        <h2>Made with ❤ by <a href="https://twitter.com/ReefBlowPlay" target="_blank" rel="noopener">justbrian</a></h2>
+        <h3>Pro tip</h3>
+        <p>Click on the video to see the original drawing in ULTRA HD</p>
+        <h3>Experiencing poor performance?</h3>
+        <p>The Tire Pressure App is at its best and fanciest and fastest on Chrome/Chromium browser(s) on desktops and modern phones</p>
+        <h3>Something broken on Microsoft Edge?</h3>
+        <p>Yeah... it really do be like that sorry. You can try using the new Edge from <a href="https://www.microsoft.com/en-us/edge" target="_blank" rel="noopener">this link</a>, which should work much better
+      </div>`;
+    openModal();
+  };
+
   profileList.addEventListener('click', (event) => {
     let targetNode: HTMLElement | null = event.target as HTMLElement;
     while (true) {
@@ -172,8 +175,14 @@ document.addEventListener('DOMContentLoaded', async () => {
       if (targetNode.nodeName === 'ITEM') break;
       targetNode = targetNode.parentElement;
     }
-    if (targetNode.id === developerId) showAboutPage();
-    else if (targetNode.dataset.idx) renderFrame((parseInt(targetNode.dataset.idx)));
+    if (targetNode.dataset.idx)
+      renderFrame((parseInt(targetNode.dataset.idx)))
+    else if (targetNode.id === developerId)
+      openAboutPage();
+    else if (targetNode.id === backgroundArtistId) 
+      openModalWithImage(`${config.background_path}${targetNode.id}-${config.image_sets.background.sizes[0]}.jpg`, 'Full background image');
+    else
+      openModalWithImage(`${config.artist_frames_path}${targetNode.id}.png`, `${targetNode.dataset.name}'s high-res frame`);
   });
 
   volumeControl.addEventListener('click', (event) => {
@@ -249,37 +258,51 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 
-  closeModalButton.addEventListener('click', (event) => {
-    $('modal').hidden = true;
-    document.body.style.overflowY = '';
-  });
-
-  function onVideoClicked(event: any) {
-    const currentArtistFrame = $('artist-frame') as HTMLImageElement;
-    const loadingIndicator = document.querySelector('#modal .loading-spinner') as HTMLElement;
-    if (!currentArtistFrame || (currentArtistFrame.dataset.idx && currentFrameIdx !== parseInt(currentArtistFrame.dataset.idx))) {
-      const profile = getProfileFromIndex(currentFrameIdx);
-      const newArtistFrame = document.createElement('img');
-      newArtistFrame.id = 'artist-frame';
-      newArtistFrame.classList.add('artist-frame');
-      newArtistFrame.alt = `${profile.name}'s high-res frame`;
-      newArtistFrame.onload = () => {
-        loadingIndicator.hidden = true;
-        newArtistFrame.hidden = false;
-      };
-      newArtistFrame.dataset.idx = '' + currentFrameIdx;
-      newArtistFrame.hidden = true;
-
-      currentArtistFrame ? currentArtistFrame.replaceWith(newArtistFrame) : $('modal').append(newArtistFrame);
-      loadingIndicator.hidden = false;
-
-      newArtistFrame.src = config.artist_frames_path + (currentFrameIdx + 1) + '.png';
-    }
+  const openModal = () => {
     document.body.style.overflowY = 'hidden';
     $('modal').hidden = false;
     $('close-modal').focus();
+  };
+
+  const closeModal = () => {
+    document.body.style.overflowY = '';
+    $('modal').hidden = true;
+  };
+
+  const clearModal = () => {
+    $('modal-content').innerHTML = '';
+  };
+
+  closeModalButton.addEventListener('click', closeModal);
+
+  function onVideoClicked(event: any) {
+    const profile = getProfileFromIndex(currentFrameIdx);
+    openModalWithImage(`${config.artist_frames_path}${currentFrameIdx + 1}.png`, `${profile.name}'s high-res frame`);
   }
   //video.addEventListener('click', onVideoClicked);
+
+  const openModalWithImage = (src, alt) => {
+    const currentImage = $('modal-image') as HTMLImageElement;
+    const loadingIndicator = document.querySelector('#modal .loading-spinner') as HTMLElement;
+    if (!currentImage || (currentImage && currentImage.dataset.src !== src)) {
+      clearModal();
+      const newImg = document.createElement('img');
+      newImg.id = 'modal-image';
+      newImg.classList.add('modal-image');
+      newImg.alt = alt;
+      newImg.hidden = true;
+      loadingIndicator.hidden = false;
+      newImg.dataset.src = src;
+      newImg.src = src;
+
+      newImg.decode().then(() => {
+        $('modal-content').append(newImg);
+        newImg.hidden = false;
+        loadingIndicator.hidden = true;
+      });
+    }
+    openModal();
+  };
 
   const scrollToProfile = (frameIdx: number, behavior: 'auto' | 'smooth' | undefined = 'auto') => {
     (smallScreen.matches ? window : profileList).scrollTo({
@@ -299,7 +322,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const ro = new ResizeObserver((entries: any) => {
       for (let entry of entries) {
         if (entry.contentRect.height > 0) {
-          scrollToProfile($('about-page').hidden ? currentFrameIdx : config.num_frames - 1);
+          scrollToProfile(currentFrameIdx);
         } else if (document.scrollingElement) {
           document.scrollingElement.scrollTop = document.scrollingElement.scrollHeight;
         }

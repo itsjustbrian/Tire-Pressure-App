@@ -39,11 +39,11 @@ module.exports = (env, { mode }) => ({
     // new CleanWebpackPlugin({
     //   disable: (mode !== 'production')
     // }),
-    new CopyWebpackPlugin([{
-      context: './assets',
-      from: './',
-      to: path.resolve(__dirname, 'public', 'assets'),
-    }]),
+    // new CopyWebpackPlugin([{
+    //   context: './assets',
+    //   from: './',
+    //   to: path.resolve(__dirname, 'public', 'assets'),
+    // }]),
     new MiniCssExtractPlugin({
       filename: (mode !== 'production') ? '[name].css' : '[name].[contenthash].css',
     }),

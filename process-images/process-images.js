@@ -2,7 +2,6 @@ const path = require('path');
 const fs = require('fs');
 const config = require('../build-config');
 const { resize } = require('../utils/build-utils');
-const del = require('del');
 
 // for (let file of fs.readdirSync(path.join(config.project_dir, '/assets/artist-frames'))) {
 //   const [id, format] = file.split('.');
@@ -14,22 +13,33 @@ const del = require('del');
 const resizeOperations = [];
 let filesProcessed = 0;
 let totalFiles = 0;
-for (let setName of Object.keys(config.image_sets)) {
+
+const processSet = (setName) => {
   const setConfig = config.image_sets[setName];
   for (let file of fs.readdirSync(path.join(config.project_dir, setConfig.path))) {
     const [id, format] = file.split('.');
     if (parseInt(id.split('-')[1])) continue; // Ignore processed files with "-size" postfix
     totalFiles++;
-    resizeOperations.push(
-      resize(id, path.join(config.project_dir, setConfig.path), format, setConfig.outputFormats, setConfig.sizes, setConfig.options)
-        .then(() => {
-          filesProcessed++;
-        })
-        .catch((error) => {
-          filesProcessed++;
-          console.error(`Error resizing image for id: ${id} in image set: ${setName}`, error.message);
-        })
-    );
+    resizeOperations.push((async () => {
+      try {
+        await resize(id, path.join(config.project_dir, setConfig.path), format, setConfig.outputFormats, setConfig.sizes, setConfig.options);
+        filesProcessed++;
+      } catch (error) {
+        filesProcessed++;
+        console.error(`Error processing image for id: ${id} in image set: ${setName}`, error.message);
+      }
+    })());
+  }
+};
+
+const args = process.argv;
+const setName = args[2];
+
+if (setName) {
+  processSet(setName);
+} else {
+  for (let setName of Object.keys(config.image_sets)) {
+    processSet(setName);
   }
 }
 

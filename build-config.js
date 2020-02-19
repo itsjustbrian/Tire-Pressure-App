@@ -4,6 +4,7 @@ module.exports = {
   src_path: '/src/',
   icons_path: '/assets/icons/',
   artist_frames_path: '/assets/artist-frames/',
+  background_path: '/assets/background/full/',
   data_path: '/data/',
   social_link_types: ['newgrounds', 'instagram', 'youtube', 'twitter'],
   num_frames: 60,
@@ -23,6 +24,11 @@ module.exports = {
       path: '/assets/tpplogo/',
       sizes: [100, 200, 300, 400],
       outputFormats: ['png', 'webp'],
+    },
+    background: {
+      path: '/assets/background/full/',
+      sizes: [4446],
+      outputFormats: ['jpg'],
     },
   },
 };
