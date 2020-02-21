@@ -165,6 +165,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         <h3>Something broken on Microsoft Edge?</h3>
         <p>Yeah... it really do be like that sorry. You can try using the new Edge from <a href="https://www.microsoft.com/en-us/edge" target="_blank" rel="noopener">this link</a>, which should work much better
       </div>`;
+    $('modal-content').style.overflowY = 'auto';
+    $('modal-header').style.backgroundColor = 'rgba(37, 53, 87, 0.9)';
+    //$('modal')
     openModal();
   };
 
@@ -271,6 +274,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const clearModal = () => {
     $('modal-content').innerHTML = '';
+    const loadingIndicator = document.querySelector('#modal .loading-spinner') as HTMLElement;
+    loadingIndicator.hidden = true;
   };
 
   closeModalButton.addEventListener('click', closeModal);

@@ -75,11 +75,11 @@ try {(async () => {
     item.append(`
       <a class="profile-link" href="${socialLinks.twitter.url}" target="_blank" rel="noopener">
         ${createPicture(profilePicOptions)}
-        <div class="line-item">
-          <div class="primary-line-item-text">${name}</div>
-          ${subTitle ? `<div class="secondary-line-item-text">${subTitle}</div>` : ''}
-        </div>
       </a>
+      <div class="line-item">
+        <div class="primary-line-item-text">${name}</div>
+        ${subTitle ? `<div class="secondary-line-item-text">${subTitle}</div>` : ''}
+      </div>
     `);
     return item;
   };

@@ -73,14 +73,6 @@ button, input, .profile, #video-area {
   user-select: text;
 }
 
-.primary-line-item-text a {
-  color: #ffffff;
-}
-
-.profile-pic-link:hover+.line-item a, .primary-line-item-text:hover a {
-  color: #51a2e4;
-}
-
 button::-moz-focus-inner {
   border: 0;
 }
@@ -200,6 +192,13 @@ button::-moz-focus-inner {
   pointer-events: none;
 }
 
+#modal-header {
+  position: absolute;
+  top: 0;
+  height: 72px;
+  width: 100%;
+}
+
 #modal-content {
   width: 100%;
   height: 100%;
@@ -212,13 +211,9 @@ button::-moz-focus-inner {
   height: calc(100% - 72px);
   margin-left: auto;
   margin-right: auto;
-  padding-left: 27px;
-  padding-right: 27px;
-  overflow-y: scroll;
-}
-
-#about-page h1 {
-  margin-top: 0;
+  padding-left: 26px;
+  padding-right: 26px;
+  padding-top: 1px;
 }
 
 #close-modal {
@@ -399,11 +394,12 @@ button::-moz-focus-inner {
 
 .profile {
   display: flex;
+  align-items: center;
   justify-content: flex-start;
   /* scroll-snap-align: center; */
   /* width: 100%; */
   min-height: 56px;
-  padding-left: 16px;
+  padding-left: 12px;
   padding-right: 4px;
   cursor: pointer;
 }
@@ -426,18 +422,20 @@ button::-moz-focus-inner {
 }
 
 .profile-link {
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  color: #ffffff;
+  padding-left: 4px;
+  padding-right: 4px;
 }
 
-.profile-link:hover {
+.profile-link:hover+.line-item {
   color: #51a2e4;
 }
 
 .line-item {
-  margin-left: 16px;
+  margin-left: 12px;
 }
 
 .secondary-line-item-text {
