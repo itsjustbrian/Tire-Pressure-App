@@ -138,7 +138,7 @@ try {(async () => {
 
   let template = fs.readFileSync(path.join(config.project_dir, config.src_path, 'template.html')).toString();
   template = template.replace('<!--LIST_INJECTION_POINT-->', profileList);
-  template = template.replace(/<!--LOADING_SPINNER_INJECTION_POINT-->/g, loadingSpinner);
+  template = template.replace('<!--LOADING_SPINNER_INJECTION_POINT-->', loadingSpinner);
   template = template.replace('<!--PLACEHOLDER_INJECTION_POINT-->', placeholderImg);
   fs.writeFileSync(path.join(config.project_dir, config.src_path, 'index.html'), template);
 

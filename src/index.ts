@@ -22,6 +22,7 @@ let seeking = false;
 let seekingDuringPlayback = false;
 let muted = true;
 let repeatActive = false;
+let currentModal;
 
 // Delay loading of inactive frames
 // window.addEventListener('fonts-loaded', () => {
@@ -54,12 +55,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   const repeatButton = $('repeat') as HTMLButtonElement;
   const playPauseButton = $('pause-play-control') as HTMLButtonElement;
   const seekBar = $('seek-bar') as HTMLInputElement;
-  const closeModalButton = $('close-modal') as HTMLButtonElement;
   const profileList = $('profile-list') as HTMLElement;
-  const videoFramePlaceholder = $('placeholder') as HTMLElement;
   const videoFrameLoadingSpinner = document.querySelector('#video-area .loading-spinner') as HTMLElement;
   videoFrameLoadingSpinner.hidden = false;
-  const frameCount = $('frame-count');
 
   const getProfileFromIndex = (idx) => {
     const profileElement = document.querySelector(`item[data-idx="${idx}"]`) as HTMLElement;
@@ -137,9 +135,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       // Change play/pause button
       if (playingVideo) playPauseButton.classList.remove('paused');
       else playPauseButton.classList.add('paused');
-
-      // Set frame number
-      //frameCount.innerText = `${(artistIdx + 1).toString().padStart(2, '0')}/${artistFrames.length}`;
     });
   };
 
@@ -153,22 +148,22 @@ document.addEventListener('DOMContentLoaded', async () => {
   };
 
   const openAboutPage = () => {
-    clearModal();
-    $('modal-content').innerHTML = `
-      <div id="about-page">
-        <h1>Tire Pressure App</h1>
-        <h2>Made with ❤ by <a href="https://twitter.com/ReefBlowPlay" target="_blank" rel="noopener">justbrian</a></h2>
-        <h3>Pro tip</h3>
-        <p>Click on the video to see the original drawing in ULTRA HD</p>
-        <h3>Experiencing poor performance?</h3>
-        <p>The Tire Pressure App is at its best and fanciest and fastest on Chrome/Chromium browser(s) on desktops and modern phones</p>
-        <h3>Something broken on Microsoft Edge?</h3>
-        <p>Yeah... it really do be like that sorry. You can try using the new Edge from <a href="https://www.microsoft.com/en-us/edge" target="_blank" rel="noopener">this link</a>, which should work much better
-      </div>`;
-    $('modal-content').style.overflowY = 'auto';
-    $('modal-header').style.backgroundColor = 'rgba(37, 53, 87, 0.9)';
-    //$('modal')
-    openModal();
+    const modal = new Modal();
+    const aboutPage = document.createElement('div');
+    aboutPage.id = 'about-page';
+    aboutPage.innerHTML = `
+      <h1>Tire Pressure App</h1>
+      <h2>Made with ❤ by <a href="https://twitter.com/ReefBlowPlay" target="_blank" rel="noopener">justbrian</a></h2>
+      <h3>Pro tip</h3>
+      <p>Click on the video to see the original drawing in ULTRA HD</p>
+      <h3>Experiencing poor performance?</h3>
+      <p>The Tire Pressure App is at its best and fanciest and fastest on Chrome/Chromium browser(s) on desktops and modern phones</p>
+      <h3>Something broken on Microsoft Edge?</h3>
+      <p>Yeah... it really do be like that sorry. You can try using the new Edge from <a href="https://www.microsoft.com/en-us/edge" target="_blank" rel="noopener">this link</a>, which should work much better
+    `;
+    modal.content = aboutPage;
+    modal.header.style.backgroundColor = 'rgba(37, 53, 87, 0.9)';
+    modal.open();
   };
 
   profileList.addEventListener('click', (event) => {
@@ -261,52 +256,99 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 
-  const openModal = () => {
-    document.body.style.overflowY = 'hidden';
-    $('modal').hidden = false;
-    $('close-modal').focus();
-  };
+  class Modal {
+    private _content: HTMLElement;
+    constructor() {
+      this._content = document.createElement('div') as HTMLElement;
+      this._content.id = 'modal';
+      this._content.hidden = true;
+      this._content.innerHTML = `
+        <div id="modal-header">
+          <button id="close-modal" class="icon-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+              <path d="M0 0h24v24H0z" fill="none" />
+            </svg>
+          </button>
+        </div>
+      `;
+      this.close = this.close.bind(this);
+      this.onModalClicked = this.onModalClicked.bind(this);
+    }
 
-  const closeModal = () => {
-    document.body.style.overflowY = '';
-    $('modal').hidden = true;
-  };
+    set content(userContent) {
+      this._content.append(userContent);
+    }
 
-  const clearModal = () => {
-    $('modal-content').innerHTML = '';
-    const loadingIndicator = document.querySelector('#modal .loading-spinner') as HTMLElement;
-    loadingIndicator.hidden = true;
-  };
+    get header() {
+      return this._content.querySelector('#modal-header') as HTMLElement;
+    }
 
-  closeModalButton.addEventListener('click', closeModal);
+    get closeButton() {
+      return this._content.querySelector('#close-modal') as HTMLElement;
+    }
+
+    onModalClicked(event) {
+      if (event.srcElement.id === 'modal') this.close();
+    }
+
+    open() {
+      this.closeButton.addEventListener('click', this.close);
+      this._content.addEventListener('click', this.onModalClicked);
+      document.body.style.overflowY = 'hidden';
+      $('main-content').style.filter = 'blur(10px)';
+      document.body.append(this._content);
+      this._content.hidden = false;
+      this.closeButton.focus();
+    }
+
+    close() {
+      this.closeButton.removeEventListener('click', this.close);
+      document.body.style.overflowY = '';
+      $('main-content').style.filter = 'none';
+      this._content.remove();
+      this._content.hidden = true;
+    }
+  }
 
   function onVideoClicked(event: any) {
     const profile = getProfileFromIndex(currentFrameIdx);
     openModalWithImage(`${config.artist_frames_path}${currentFrameIdx + 1}.png`, `${profile.name}'s high-res frame`);
   }
-  //video.addEventListener('click', onVideoClicked);
 
   const openModalWithImage = (src, alt) => {
-    const currentImage = $('modal-image') as HTMLImageElement;
-    const loadingIndicator = document.querySelector('#modal .loading-spinner') as HTMLElement;
-    if (!currentImage || (currentImage && currentImage.dataset.src !== src)) {
-      clearModal();
-      const newImg = document.createElement('img');
-      newImg.id = 'modal-image';
-      newImg.classList.add('modal-image');
-      newImg.alt = alt;
-      newImg.hidden = true;
-      loadingIndicator.hidden = false;
-      newImg.dataset.src = src;
-      newImg.src = src;
+    const modal = new Modal();
+    modal.header.style.minHeight = '0';
+    const modalContent = document.createDocumentFragment();
 
-      newImg.decode().then(() => {
-        $('modal-content').append(newImg);
-        newImg.hidden = false;
-        loadingIndicator.hidden = true;
-      });
-    }
-    openModal();
+    const loadingSpinnerOptions = {
+      path: config.image_sets.logos.path + 'tpp_loading_spinner',
+      srcSizes: config.image_sets.logos.sizes,
+      sizes: '100px',
+      alt: 'Loading spinner',
+      imgClass: 'loading-spinner',
+      baseFormat: 'png'
+    };
+    const loadingSpinner = htmlToTemplate(createPicture(loadingSpinnerOptions)).firstChild as HTMLElement;
+    loadingSpinner.hidden = false;
+
+    modalContent.append(loadingSpinner);
+
+    const newImg = document.createElement('img');
+    newImg.id = 'modal-image';
+    newImg.classList.add('modal-image');
+    newImg.alt = alt;
+    newImg.hidden = true;
+    newImg.src = src;
+    newImg.decode().then(() => {
+      newImg.hidden = false;
+      loadingSpinner.hidden = true;
+    });
+
+    modalContent.append(newImg);
+
+    modal.content = modalContent;
+    modal.open();
   };
 
   const scrollToProfile = (frameIdx: number, behavior: 'auto' | 'smooth' | undefined = 'auto') => {
