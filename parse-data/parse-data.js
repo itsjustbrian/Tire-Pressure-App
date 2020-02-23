@@ -4,8 +4,13 @@ const glob = require('glob');
 const csv2json = require('./csv2json.js');
 const fs = require('fs');
 
-const TWITTER_COL = 'Twitter';
-const INSTAGRAM_COL = 'Instagram';
+const ID_COL = '#';
+const ARTIST_COL = 'Artist';
+const TWITTER_COL = 'Twitter(ID)';
+const INSTAGRAM_COL = 'Instagram(ID)';
+const YOUTUBE_COL = 'Youtube(Link)';
+const NEWGROUNDS_COL = 'Newgrounds(Link)';
+const PREFERRED_COL = 'Preferred social media';
 const DEVELOPER_KEY = 'Artist of Coding';
 const BG_ARTIST_KEY = 'BG Artist';
 const EXTRA_ARTIST_KEY = 'Extra Contribution';
@@ -16,8 +21,8 @@ glob('*.csv', (er, files) => {
   const parsed_data = { main_frame_artists: [], app_dev: null, bg_artist: null, extra_frame_artists: [] };
 
   for (let artist of data) {
-    artist.name = artist['Artist'];
-    delete artist['Artist'];
+    artist.name = artist[ARTIST_COL];
+    delete artist[ARTIST_COL];
     artist.social_links = {};
     const twitterId = artist[TWITTER_COL].split(' ')[0].slice(1);
     artist.social_links.twitter = {
@@ -35,8 +40,27 @@ glob('*.csv', (er, files) => {
     }
     delete artist[INSTAGRAM_COL];
 
-    const key = artist['#'];
-    delete artist['#'];
+    if (artist[YOUTUBE_COL].length) {
+      artist.social_links.youtube = {
+        name: 'youtube',
+        url: artist[YOUTUBE_COL]
+      };
+    }
+    delete artist[YOUTUBE_COL];
+
+    if (artist[NEWGROUNDS_COL].length) {
+      artist.social_links.newgrounds = {
+        name: 'newgrounds',
+        url: artist[NEWGROUNDS_COL]
+      };
+    }
+    delete artist[NEWGROUNDS_COL];
+
+    artist.preferred_link = artist[PREFERRED_COL].length ? artist[PREFERRED_COL].toLowerCase() : 'twitter';
+    delete artist[PREFERRED_COL];
+
+    const key = artist[ID_COL];
+    delete artist[ID_COL];
     if (Number.isInteger(key)) {
       artist.number = key;
       parsed_data.main_frame_artists.push(artist);

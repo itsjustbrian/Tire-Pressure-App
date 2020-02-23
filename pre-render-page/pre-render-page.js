@@ -35,9 +35,12 @@ ncpAsync = (src, dest) => new Promise((resolve) => ncp(src, dest, resolve));
 
 try {(async () => {
 
+  const devAssetsPath = path.join(config.project_dir, '/assets');
   const publicAssetsPath = path.join(config.project_dir, '/public/assets');
   await del(publicAssetsPath, {force: true});
-  await ncpAsync(path.join(config.project_dir, '/assets'), publicAssetsPath);
+  await ncpAsync(devAssetsPath, publicAssetsPath);
+  await ncpAsync(path.join(publicAssetsPath, '/favicon'), path.join(config.project_dir, '/public'));
+  await del(path.join(publicAssetsPath, '/favicon'), {force: true});
 
   // for (let setName of Object.keys(config.image_sets)) {
   //   const setConfig = config.image_sets[setName];
@@ -47,14 +50,14 @@ try {(async () => {
   //   }
   // }
 
-  const genIconLink = (href, fileName) => {
-    //const svg = fs.readFileSync(path.join(config.project_dir, config.icons_path, `${fileName}.svg`));
-    return `
-      <a href="${href}" class="social-icon" target="_blank" rel="noopener">
-        <img src="${path.join(config.icons_path, `${fileName}.svg`)}" alt="${fileName}"></img>
-      </a>
-    `;
-  };
+  // const genIconLink = (href, fileName) => {
+  //   //const svg = fs.readFileSync(path.join(config.project_dir, config.icons_path, `${fileName}.svg`));
+  //   return `
+  //     <a href="${href}" class="social-icon" target="_blank" rel="noopener">
+  //       <img src="${path.join(config.icons_path, `${fileName}.svg`)}" alt="${fileName}"></img>
+  //     </a>
+  //   `;
+  // };
 
   const generateProfile = (profileData, subTitle) => {
     const id = profileData.social_links.twitter.id;
@@ -63,6 +66,9 @@ try {(async () => {
     const profilePicOptions = {
       path: path.join(config.image_sets.profile_pics.path, id),
       srcSizes: config.image_sets.profile_pics.sizes,
+      sizes: '40px',
+      width: 40,
+      height: 40,
       alt: `${name}'s profile picture`,
       lazy: true,
       imgClass: 'profile-pic'
@@ -73,7 +79,7 @@ try {(async () => {
     item.attr('id', id);
     item.attr('data-name', name);
     item.append(`
-      <a class="profile-link" href="${socialLinks.twitter.url}" target="_blank" rel="noopener">
+      <a class="profile-link" href="${socialLinks[profileData.preferred_link].url}" target="_blank" rel="noopener">
         ${createPicture(profilePicOptions)}
       </a>
       <div class="line-item">
@@ -104,6 +110,8 @@ try {(async () => {
     path: path.join(config.image_sets.logos.path, 'tpplogo'),
     srcSizes: config.image_sets.logos.sizes,
     sizes: '100px',
+    width: 100,
+    height: 100,
     alt: 'Tire Pressure Project logo',
     lazy: true,
     imgClass: 'tpplogo',
@@ -133,6 +141,7 @@ try {(async () => {
   const base64Background = base64Image(backgroundFile);
   $ = cheerio.load('<img></img>');
   $('img').attr('id', 'placeholder');
+  $('img').attr('alt', 'Video-frame loading placeholder');
   $('img').attr('src', base64Background);
   const placeholderImg = cheerio.html($('img'));
 

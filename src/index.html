@@ -1,13 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
   <base href="/">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#010629">
+  <meta name="msapplication-TileColor" content="#2b5797">
+  <meta name="theme-color" content="#010137">
 
-  <title>Tire Pressure Project</title>
-
+  <title>Tire Pressure</title>
   <meta name="Description" content="The official Tire Pressure Project app, where you can explore every frame drawn to recreate the iconic scene from Spongebob">
 
   <script>history.scrollRestoration = "manual"</script>
@@ -22,15 +28,15 @@
 </head>
 
 <body>
-  <div id="main-content">
+  <main id="main-content">
     <div id="video-area">
       <div id="frame-stage" hidden></div>
       <audio id="audio" src="assets/tire_pressure_audio.m4a" muted preload="auto"></audio>
-      <img id="placeholder" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAASACoDASIAAhEBAxEB/8QAGgAAAgIDAAAAAAAAAAAAAAAAAAMEBQECBv/EACUQAAIBAwMCBwAAAAAAAAAAAAEAEQMCBAUxIRNBBhIVIlFSkf/EABgBAAMBAQAAAAAAAAAAAAAAAAACAwUG/8QAHREAAgICAwEAAAAAAAAAAAAAAAECMREEUQMSE//aAAwDAQACEQMRAD8A4K+uLlfVA7tjW8PZNEwVQ0Osd3qVswdGFhZIJrjs72ZEDlmnQaoEq79DrgcI9iIeURjXFzjzrxo2TMQVnoeX9Sn3hyGFyd/nATs10CdkRyuqhVYwAfDtAjYIi7GMU7R1BwGyFtsD2j8RGUybs//Z">
+      <img id="placeholder" alt="Video-frame loading placeholder" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAASACoDASIAAhEBAxEB/8QAGgAAAgIDAAAAAAAAAAAAAAAAAAMEBQECBv/EACUQAAIBAwMCBwAAAAAAAAAAAAEAEQMCBAUxIRNBBhIVIlFSkf/EABgBAAMBAQAAAAAAAAAAAAAAAAACAwUG/8QAHREAAgICAwEAAAAAAAAAAAAAAAECMREEUQMSE//aAAwDAQACEQMRAD8A4K+uLlfVA7tjW8PZNEwVQ0Osd3qVswdGFhZIJrjs72ZEDlmnQaoEq79DrgcI9iIeURjXFzjzrxo2TMQVnoeX9Sn3hyGFyd/nATs10CdkRyuqhVYwAfDtAjYIi7GMU7R1BwGyFtsD2j8RGUybs//Z">
       <picture class="loading-spinner" hidden="true">
       <source type="image/webp" srcset="/assets/tpplogo/tpp_loading_spinner-100.webp 100w, /assets/tpplogo/tpp_loading_spinner-200.webp 200w, /assets/tpplogo/tpp_loading_spinner-300.webp 300w, /assets/tpplogo/tpp_loading_spinner-400.webp 400w" sizes="100px">
       <source type="image/png" srcset="/assets/tpplogo/tpp_loading_spinner-100.png 100w, /assets/tpplogo/tpp_loading_spinner-200.png 200w, /assets/tpplogo/tpp_loading_spinner-300.png 300w, /assets/tpplogo/tpp_loading_spinner-400.png 400w" sizes="100px">
-      <img class="loading-spinner " src="/assets/tpplogo/tpp_loading_spinner-400.png" alt="Loading spinner" width="400" height="auto">
+      <img class="loading-spinner " src="/assets/tpplogo/tpp_loading_spinner-400.png" alt="Loading spinner" width="undefined" height="undefined">
     </picture>
     </div>
     <list id="profile-list">
@@ -38,9 +44,9 @@
       <a class="profile-link" href="https://twitter.com/yugsly" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/yugsly-40.webp 40w, /assets/profile-pics/yugsly-80.webp 80w, /assets/profile-pics/yugsly-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/yugsly-40.jpg 40w, /assets/profile-pics/yugsly-80.jpg 80w, /assets/profile-pics/yugsly-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/yugsly-120.jpg" alt="yugo limbo&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/yugsly-40.webp 40w, /assets/profile-pics/yugsly-80.webp 80w, /assets/profile-pics/yugsly-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/yugsly-40.jpg 40w, /assets/profile-pics/yugsly-80.jpg 80w, /assets/profile-pics/yugsly-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/yugsly-120.jpg" alt="yugo limbo&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -52,9 +58,9 @@
       <a class="profile-link" href="https://twitter.com/afroninja180" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/afroninja180-40.webp 40w, /assets/profile-pics/afroninja180-80.webp 80w, /assets/profile-pics/afroninja180-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/afroninja180-40.jpg 40w, /assets/profile-pics/afroninja180-80.jpg 80w, /assets/profile-pics/afroninja180-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/afroninja180-120.jpg" alt="AfroNinja360&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/afroninja180-40.webp 40w, /assets/profile-pics/afroninja180-80.webp 80w, /assets/profile-pics/afroninja180-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/afroninja180-40.jpg 40w, /assets/profile-pics/afroninja180-80.jpg 80w, /assets/profile-pics/afroninja180-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/afroninja180-120.jpg" alt="AfroNinja360&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -66,9 +72,9 @@
       <a class="profile-link" href="https://twitter.com/ThievinIMP" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/ThievinIMP-40.webp 40w, /assets/profile-pics/ThievinIMP-80.webp 80w, /assets/profile-pics/ThievinIMP-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/ThievinIMP-40.jpg 40w, /assets/profile-pics/ThievinIMP-80.jpg 80w, /assets/profile-pics/ThievinIMP-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/ThievinIMP-120.jpg" alt="IMP&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/ThievinIMP-40.webp 40w, /assets/profile-pics/ThievinIMP-80.webp 80w, /assets/profile-pics/ThievinIMP-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/ThievinIMP-40.jpg 40w, /assets/profile-pics/ThievinIMP-80.jpg 80w, /assets/profile-pics/ThievinIMP-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/ThievinIMP-120.jpg" alt="IMP&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -80,9 +86,9 @@
       <a class="profile-link" href="https://twitter.com/mikeisapinecone" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/mikeisapinecone-40.webp 40w, /assets/profile-pics/mikeisapinecone-80.webp 80w, /assets/profile-pics/mikeisapinecone-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/mikeisapinecone-40.jpg 40w, /assets/profile-pics/mikeisapinecone-80.jpg 80w, /assets/profile-pics/mikeisapinecone-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/mikeisapinecone-120.jpg" alt="Mike Picone&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/mikeisapinecone-40.webp 40w, /assets/profile-pics/mikeisapinecone-80.webp 80w, /assets/profile-pics/mikeisapinecone-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/mikeisapinecone-40.jpg 40w, /assets/profile-pics/mikeisapinecone-80.jpg 80w, /assets/profile-pics/mikeisapinecone-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/mikeisapinecone-120.jpg" alt="Mike Picone&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -94,9 +100,9 @@
       <a class="profile-link" href="https://twitter.com/DeDeur_" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/DeDeur_-40.webp 40w, /assets/profile-pics/DeDeur_-80.webp 80w, /assets/profile-pics/DeDeur_-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/DeDeur_-40.jpg 40w, /assets/profile-pics/DeDeur_-80.jpg 80w, /assets/profile-pics/DeDeur_-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/DeDeur_-120.jpg" alt="DeDeur&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/DeDeur_-40.webp 40w, /assets/profile-pics/DeDeur_-80.webp 80w, /assets/profile-pics/DeDeur_-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/DeDeur_-40.jpg 40w, /assets/profile-pics/DeDeur_-80.jpg 80w, /assets/profile-pics/DeDeur_-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/DeDeur_-120.jpg" alt="DeDeur&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -108,9 +114,9 @@
       <a class="profile-link" href="https://twitter.com/warddraws" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/warddraws-40.webp 40w, /assets/profile-pics/warddraws-80.webp 80w, /assets/profile-pics/warddraws-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/warddraws-40.jpg 40w, /assets/profile-pics/warddraws-80.jpg 80w, /assets/profile-pics/warddraws-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/warddraws-120.jpg" alt="Warddraws&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/warddraws-40.webp 40w, /assets/profile-pics/warddraws-80.webp 80w, /assets/profile-pics/warddraws-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/warddraws-40.jpg 40w, /assets/profile-pics/warddraws-80.jpg 80w, /assets/profile-pics/warddraws-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/warddraws-120.jpg" alt="Warddraws&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -122,9 +128,9 @@
       <a class="profile-link" href="https://twitter.com/dylliewillie" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/dylliewillie-40.webp 40w, /assets/profile-pics/dylliewillie-80.webp 80w, /assets/profile-pics/dylliewillie-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/dylliewillie-40.jpg 40w, /assets/profile-pics/dylliewillie-80.jpg 80w, /assets/profile-pics/dylliewillie-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/dylliewillie-120.jpg" alt="Dylan Mann&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/dylliewillie-40.webp 40w, /assets/profile-pics/dylliewillie-80.webp 80w, /assets/profile-pics/dylliewillie-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/dylliewillie-40.jpg 40w, /assets/profile-pics/dylliewillie-80.jpg 80w, /assets/profile-pics/dylliewillie-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/dylliewillie-120.jpg" alt="Dylan Mann&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -136,9 +142,9 @@
       <a class="profile-link" href="https://twitter.com/RyanStormah" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/RyanStormah-40.webp 40w, /assets/profile-pics/RyanStormah-80.webp 80w, /assets/profile-pics/RyanStormah-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/RyanStormah-40.jpg 40w, /assets/profile-pics/RyanStormah-80.jpg 80w, /assets/profile-pics/RyanStormah-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/RyanStormah-120.jpg" alt="Ryan Storm&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/RyanStormah-40.webp 40w, /assets/profile-pics/RyanStormah-80.webp 80w, /assets/profile-pics/RyanStormah-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/RyanStormah-40.jpg 40w, /assets/profile-pics/RyanStormah-80.jpg 80w, /assets/profile-pics/RyanStormah-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/RyanStormah-120.jpg" alt="Ryan Storm&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -150,9 +156,9 @@
       <a class="profile-link" href="https://twitter.com/spectrotoons" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/spectrotoons-40.webp 40w, /assets/profile-pics/spectrotoons-80.webp 80w, /assets/profile-pics/spectrotoons-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/spectrotoons-40.jpg 40w, /assets/profile-pics/spectrotoons-80.jpg 80w, /assets/profile-pics/spectrotoons-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/spectrotoons-120.jpg" alt="Spectrotoons&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/spectrotoons-40.webp 40w, /assets/profile-pics/spectrotoons-80.webp 80w, /assets/profile-pics/spectrotoons-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/spectrotoons-40.jpg 40w, /assets/profile-pics/spectrotoons-80.jpg 80w, /assets/profile-pics/spectrotoons-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/spectrotoons-120.jpg" alt="Spectrotoons&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -164,9 +170,9 @@
       <a class="profile-link" href="https://twitter.com/AnAxeDraws" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/AnAxeDraws-40.webp 40w, /assets/profile-pics/AnAxeDraws-80.webp 80w, /assets/profile-pics/AnAxeDraws-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/AnAxeDraws-40.jpg 40w, /assets/profile-pics/AnAxeDraws-80.jpg 80w, /assets/profile-pics/AnAxeDraws-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/AnAxeDraws-120.jpg" alt="An Axe&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/AnAxeDraws-40.webp 40w, /assets/profile-pics/AnAxeDraws-80.webp 80w, /assets/profile-pics/AnAxeDraws-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/AnAxeDraws-40.jpg 40w, /assets/profile-pics/AnAxeDraws-80.jpg 80w, /assets/profile-pics/AnAxeDraws-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/AnAxeDraws-120.jpg" alt="An Axe&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -178,9 +184,9 @@
       <a class="profile-link" href="https://twitter.com/thankscocoa" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/thankscocoa-40.webp 40w, /assets/profile-pics/thankscocoa-80.webp 80w, /assets/profile-pics/thankscocoa-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/thankscocoa-40.jpg 40w, /assets/profile-pics/thankscocoa-80.jpg 80w, /assets/profile-pics/thankscocoa-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/thankscocoa-120.jpg" alt="Chelsea&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/thankscocoa-40.webp 40w, /assets/profile-pics/thankscocoa-80.webp 80w, /assets/profile-pics/thankscocoa-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/thankscocoa-40.jpg 40w, /assets/profile-pics/thankscocoa-80.jpg 80w, /assets/profile-pics/thankscocoa-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/thankscocoa-120.jpg" alt="Chelsea&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -192,9 +198,9 @@
       <a class="profile-link" href="https://twitter.com/seanatar" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/seanatar-40.webp 40w, /assets/profile-pics/seanatar-80.webp 80w, /assets/profile-pics/seanatar-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/seanatar-40.jpg 40w, /assets/profile-pics/seanatar-80.jpg 80w, /assets/profile-pics/seanatar-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/seanatar-120.jpg" alt="Seanatar&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/seanatar-40.webp 40w, /assets/profile-pics/seanatar-80.webp 80w, /assets/profile-pics/seanatar-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/seanatar-40.jpg 40w, /assets/profile-pics/seanatar-80.jpg 80w, /assets/profile-pics/seanatar-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/seanatar-120.jpg" alt="Seanatar&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -206,9 +212,9 @@
       <a class="profile-link" href="https://twitter.com/Jaquin_S" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/Jaquin_S-40.webp 40w, /assets/profile-pics/Jaquin_S-80.webp 80w, /assets/profile-pics/Jaquin_S-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/Jaquin_S-40.jpg 40w, /assets/profile-pics/Jaquin_S-80.jpg 80w, /assets/profile-pics/Jaquin_S-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/Jaquin_S-120.jpg" alt="Jaquin&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/Jaquin_S-40.webp 40w, /assets/profile-pics/Jaquin_S-80.webp 80w, /assets/profile-pics/Jaquin_S-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/Jaquin_S-40.jpg 40w, /assets/profile-pics/Jaquin_S-80.jpg 80w, /assets/profile-pics/Jaquin_S-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/Jaquin_S-120.jpg" alt="Jaquin&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -220,9 +226,9 @@
       <a class="profile-link" href="https://twitter.com/HochiganThemeat" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/HochiganThemeat-40.webp 40w, /assets/profile-pics/HochiganThemeat-80.webp 80w, /assets/profile-pics/HochiganThemeat-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/HochiganThemeat-40.jpg 40w, /assets/profile-pics/HochiganThemeat-80.jpg 80w, /assets/profile-pics/HochiganThemeat-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/HochiganThemeat-120.jpg" alt="Hochigan&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/HochiganThemeat-40.webp 40w, /assets/profile-pics/HochiganThemeat-80.webp 80w, /assets/profile-pics/HochiganThemeat-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/HochiganThemeat-40.jpg 40w, /assets/profile-pics/HochiganThemeat-80.jpg 80w, /assets/profile-pics/HochiganThemeat-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/HochiganThemeat-120.jpg" alt="Hochigan&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -234,9 +240,9 @@
       <a class="profile-link" href="https://twitter.com/darkdarrena" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/darkdarrena-40.webp 40w, /assets/profile-pics/darkdarrena-80.webp 80w, /assets/profile-pics/darkdarrena-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/darkdarrena-40.jpg 40w, /assets/profile-pics/darkdarrena-80.jpg 80w, /assets/profile-pics/darkdarrena-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/darkdarrena-120.jpg" alt="Darkdarren&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/darkdarrena-40.webp 40w, /assets/profile-pics/darkdarrena-80.webp 80w, /assets/profile-pics/darkdarrena-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/darkdarrena-40.jpg 40w, /assets/profile-pics/darkdarrena-80.jpg 80w, /assets/profile-pics/darkdarrena-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/darkdarrena-120.jpg" alt="Darkdarren&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -248,9 +254,9 @@
       <a class="profile-link" href="https://twitter.com/Moonmanunit42" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/Moonmanunit42-40.webp 40w, /assets/profile-pics/Moonmanunit42-80.webp 80w, /assets/profile-pics/Moonmanunit42-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/Moonmanunit42-40.jpg 40w, /assets/profile-pics/Moonmanunit42-80.jpg 80w, /assets/profile-pics/Moonmanunit42-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/Moonmanunit42-120.jpg" alt="Jack Evans&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/Moonmanunit42-40.webp 40w, /assets/profile-pics/Moonmanunit42-80.webp 80w, /assets/profile-pics/Moonmanunit42-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/Moonmanunit42-40.jpg 40w, /assets/profile-pics/Moonmanunit42-80.jpg 80w, /assets/profile-pics/Moonmanunit42-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/Moonmanunit42-120.jpg" alt="Jack Evans&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -262,9 +268,9 @@
       <a class="profile-link" href="https://twitter.com/keeganmcfly" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/keeganmcfly-40.webp 40w, /assets/profile-pics/keeganmcfly-80.webp 80w, /assets/profile-pics/keeganmcfly-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/keeganmcfly-40.jpg 40w, /assets/profile-pics/keeganmcfly-80.jpg 80w, /assets/profile-pics/keeganmcfly-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/keeganmcfly-120.jpg" alt="Keegan McFly&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/keeganmcfly-40.webp 40w, /assets/profile-pics/keeganmcfly-80.webp 80w, /assets/profile-pics/keeganmcfly-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/keeganmcfly-40.jpg 40w, /assets/profile-pics/keeganmcfly-80.jpg 80w, /assets/profile-pics/keeganmcfly-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/keeganmcfly-120.jpg" alt="Keegan McFly&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -276,9 +282,9 @@
       <a class="profile-link" href="https://twitter.com/volkasthunters" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/volkasthunters-40.webp 40w, /assets/profile-pics/volkasthunters-80.webp 80w, /assets/profile-pics/volkasthunters-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/volkasthunters-40.jpg 40w, /assets/profile-pics/volkasthunters-80.jpg 80w, /assets/profile-pics/volkasthunters-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/volkasthunters-120.jpg" alt="boneax&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/volkasthunters-40.webp 40w, /assets/profile-pics/volkasthunters-80.webp 80w, /assets/profile-pics/volkasthunters-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/volkasthunters-40.jpg 40w, /assets/profile-pics/volkasthunters-80.jpg 80w, /assets/profile-pics/volkasthunters-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/volkasthunters-120.jpg" alt="boneax&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -290,9 +296,9 @@
       <a class="profile-link" href="https://twitter.com/RogerLOX" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/RogerLOX-40.webp 40w, /assets/profile-pics/RogerLOX-80.webp 80w, /assets/profile-pics/RogerLOX-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/RogerLOX-40.jpg 40w, /assets/profile-pics/RogerLOX-80.jpg 80w, /assets/profile-pics/RogerLOX-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/RogerLOX-120.jpg" alt="Roger&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/RogerLOX-40.webp 40w, /assets/profile-pics/RogerLOX-80.webp 80w, /assets/profile-pics/RogerLOX-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/RogerLOX-40.jpg 40w, /assets/profile-pics/RogerLOX-80.jpg 80w, /assets/profile-pics/RogerLOX-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/RogerLOX-120.jpg" alt="Roger&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -304,9 +310,9 @@
       <a class="profile-link" href="https://twitter.com/coolprinter24" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/coolprinter24-40.webp 40w, /assets/profile-pics/coolprinter24-80.webp 80w, /assets/profile-pics/coolprinter24-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/coolprinter24-40.jpg 40w, /assets/profile-pics/coolprinter24-80.jpg 80w, /assets/profile-pics/coolprinter24-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/coolprinter24-120.jpg" alt="Andre&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/coolprinter24-40.webp 40w, /assets/profile-pics/coolprinter24-80.webp 80w, /assets/profile-pics/coolprinter24-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/coolprinter24-40.jpg 40w, /assets/profile-pics/coolprinter24-80.jpg 80w, /assets/profile-pics/coolprinter24-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/coolprinter24-120.jpg" alt="Andre&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -318,9 +324,9 @@
       <a class="profile-link" href="https://twitter.com/slurpbert" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/slurpbert-40.webp 40w, /assets/profile-pics/slurpbert-80.webp 80w, /assets/profile-pics/slurpbert-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/slurpbert-40.jpg 40w, /assets/profile-pics/slurpbert-80.jpg 80w, /assets/profile-pics/slurpbert-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/slurpbert-120.jpg" alt="Lepy&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/slurpbert-40.webp 40w, /assets/profile-pics/slurpbert-80.webp 80w, /assets/profile-pics/slurpbert-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/slurpbert-40.jpg 40w, /assets/profile-pics/slurpbert-80.jpg 80w, /assets/profile-pics/slurpbert-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/slurpbert-120.jpg" alt="Lepy&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -332,9 +338,9 @@
       <a class="profile-link" href="https://twitter.com/PrimatePunk" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/PrimatePunk-40.webp 40w, /assets/profile-pics/PrimatePunk-80.webp 80w, /assets/profile-pics/PrimatePunk-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/PrimatePunk-40.jpg 40w, /assets/profile-pics/PrimatePunk-80.jpg 80w, /assets/profile-pics/PrimatePunk-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/PrimatePunk-120.jpg" alt="PrimatePunk&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/PrimatePunk-40.webp 40w, /assets/profile-pics/PrimatePunk-80.webp 80w, /assets/profile-pics/PrimatePunk-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/PrimatePunk-40.jpg 40w, /assets/profile-pics/PrimatePunk-80.jpg 80w, /assets/profile-pics/PrimatePunk-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/PrimatePunk-120.jpg" alt="PrimatePunk&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -346,9 +352,9 @@
       <a class="profile-link" href="https://twitter.com/PineappleBank" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/PineappleBank-40.webp 40w, /assets/profile-pics/PineappleBank-80.webp 80w, /assets/profile-pics/PineappleBank-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/PineappleBank-40.jpg 40w, /assets/profile-pics/PineappleBank-80.jpg 80w, /assets/profile-pics/PineappleBank-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/PineappleBank-120.jpg" alt="Pine&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/PineappleBank-40.webp 40w, /assets/profile-pics/PineappleBank-80.webp 80w, /assets/profile-pics/PineappleBank-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/PineappleBank-40.jpg 40w, /assets/profile-pics/PineappleBank-80.jpg 80w, /assets/profile-pics/PineappleBank-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/PineappleBank-120.jpg" alt="Pine&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -360,9 +366,9 @@
       <a class="profile-link" href="https://twitter.com/LoganPhresh" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/LoganPhresh-40.webp 40w, /assets/profile-pics/LoganPhresh-80.webp 80w, /assets/profile-pics/LoganPhresh-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/LoganPhresh-40.jpg 40w, /assets/profile-pics/LoganPhresh-80.jpg 80w, /assets/profile-pics/LoganPhresh-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/LoganPhresh-120.jpg" alt="Logan Phresh&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/LoganPhresh-40.webp 40w, /assets/profile-pics/LoganPhresh-80.webp 80w, /assets/profile-pics/LoganPhresh-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/LoganPhresh-40.jpg 40w, /assets/profile-pics/LoganPhresh-80.jpg 80w, /assets/profile-pics/LoganPhresh-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/LoganPhresh-120.jpg" alt="Logan Phresh&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -374,9 +380,9 @@
       <a class="profile-link" href="https://twitter.com/RaniSagaz" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/RaniSagaz-40.webp 40w, /assets/profile-pics/RaniSagaz-80.webp 80w, /assets/profile-pics/RaniSagaz-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/RaniSagaz-40.jpg 40w, /assets/profile-pics/RaniSagaz-80.jpg 80w, /assets/profile-pics/RaniSagaz-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/RaniSagaz-120.jpg" alt="Raniery Oliveira&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/RaniSagaz-40.webp 40w, /assets/profile-pics/RaniSagaz-80.webp 80w, /assets/profile-pics/RaniSagaz-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/RaniSagaz-40.jpg 40w, /assets/profile-pics/RaniSagaz-80.jpg 80w, /assets/profile-pics/RaniSagaz-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/RaniSagaz-120.jpg" alt="Raniery Oliveira&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -388,9 +394,9 @@
       <a class="profile-link" href="https://twitter.com/JacobLenstar" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/JacobLenstar-40.webp 40w, /assets/profile-pics/JacobLenstar-80.webp 80w, /assets/profile-pics/JacobLenstar-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/JacobLenstar-40.jpg 40w, /assets/profile-pics/JacobLenstar-80.jpg 80w, /assets/profile-pics/JacobLenstar-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/JacobLenstar-120.jpg" alt="Jacob Lenard&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/JacobLenstar-40.webp 40w, /assets/profile-pics/JacobLenstar-80.webp 80w, /assets/profile-pics/JacobLenstar-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/JacobLenstar-40.jpg 40w, /assets/profile-pics/JacobLenstar-80.jpg 80w, /assets/profile-pics/JacobLenstar-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/JacobLenstar-120.jpg" alt="Jacob Lenard&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -402,9 +408,9 @@
       <a class="profile-link" href="https://twitter.com/ItsAllSoUgly" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/ItsAllSoUgly-40.webp 40w, /assets/profile-pics/ItsAllSoUgly-80.webp 80w, /assets/profile-pics/ItsAllSoUgly-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/ItsAllSoUgly-40.jpg 40w, /assets/profile-pics/ItsAllSoUgly-80.jpg 80w, /assets/profile-pics/ItsAllSoUgly-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/ItsAllSoUgly-120.jpg" alt="Ben Saint&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/ItsAllSoUgly-40.webp 40w, /assets/profile-pics/ItsAllSoUgly-80.webp 80w, /assets/profile-pics/ItsAllSoUgly-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/ItsAllSoUgly-40.jpg 40w, /assets/profile-pics/ItsAllSoUgly-80.jpg 80w, /assets/profile-pics/ItsAllSoUgly-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/ItsAllSoUgly-120.jpg" alt="Ben Saint&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -413,12 +419,12 @@
         
       </div>
     </item><item class="profile" id="shoeshriner" data-name="Matthew Shoemaker" data-idx="27">
-      <a class="profile-link" href="https://twitter.com/shoeshriner" target="_blank" rel="noopener">
+      <a class="profile-link" href="https://instagram.com/shoeshriner" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/shoeshriner-40.webp 40w, /assets/profile-pics/shoeshriner-80.webp 80w, /assets/profile-pics/shoeshriner-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/shoeshriner-40.jpg 40w, /assets/profile-pics/shoeshriner-80.jpg 80w, /assets/profile-pics/shoeshriner-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/shoeshriner-120.jpg" alt="Matthew Shoemaker&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/shoeshriner-40.webp 40w, /assets/profile-pics/shoeshriner-80.webp 80w, /assets/profile-pics/shoeshriner-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/shoeshriner-40.jpg 40w, /assets/profile-pics/shoeshriner-80.jpg 80w, /assets/profile-pics/shoeshriner-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/shoeshriner-120.jpg" alt="Matthew Shoemaker&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -430,9 +436,9 @@
       <a class="profile-link" href="https://twitter.com/AshKChoi" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/AshKChoi-40.webp 40w, /assets/profile-pics/AshKChoi-80.webp 80w, /assets/profile-pics/AshKChoi-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/AshKChoi-40.jpg 40w, /assets/profile-pics/AshKChoi-80.jpg 80w, /assets/profile-pics/AshKChoi-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/AshKChoi-120.jpg" alt="Ash&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/AshKChoi-40.webp 40w, /assets/profile-pics/AshKChoi-80.webp 80w, /assets/profile-pics/AshKChoi-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/AshKChoi-40.jpg 40w, /assets/profile-pics/AshKChoi-80.jpg 80w, /assets/profile-pics/AshKChoi-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/AshKChoi-120.jpg" alt="Ash&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -444,9 +450,9 @@
       <a class="profile-link" href="https://twitter.com/rainybleuu" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/rainybleuu-40.webp 40w, /assets/profile-pics/rainybleuu-80.webp 80w, /assets/profile-pics/rainybleuu-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/rainybleuu-40.jpg 40w, /assets/profile-pics/rainybleuu-80.jpg 80w, /assets/profile-pics/rainybleuu-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/rainybleuu-120.jpg" alt="Hannah&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/rainybleuu-40.webp 40w, /assets/profile-pics/rainybleuu-80.webp 80w, /assets/profile-pics/rainybleuu-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/rainybleuu-40.jpg 40w, /assets/profile-pics/rainybleuu-80.jpg 80w, /assets/profile-pics/rainybleuu-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/rainybleuu-120.jpg" alt="Hannah&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -458,9 +464,9 @@
       <a class="profile-link" href="https://twitter.com/hello_nymphish" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/hello_nymphish-40.webp 40w, /assets/profile-pics/hello_nymphish-80.webp 80w, /assets/profile-pics/hello_nymphish-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/hello_nymphish-40.jpg 40w, /assets/profile-pics/hello_nymphish-80.jpg 80w, /assets/profile-pics/hello_nymphish-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/hello_nymphish-120.jpg" alt="Bella&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/hello_nymphish-40.webp 40w, /assets/profile-pics/hello_nymphish-80.webp 80w, /assets/profile-pics/hello_nymphish-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/hello_nymphish-40.jpg 40w, /assets/profile-pics/hello_nymphish-80.jpg 80w, /assets/profile-pics/hello_nymphish-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/hello_nymphish-120.jpg" alt="Bella&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -472,9 +478,9 @@
       <a class="profile-link" href="https://twitter.com/OyeOyeEsteban" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/OyeOyeEsteban-40.webp 40w, /assets/profile-pics/OyeOyeEsteban-80.webp 80w, /assets/profile-pics/OyeOyeEsteban-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/OyeOyeEsteban-40.jpg 40w, /assets/profile-pics/OyeOyeEsteban-80.jpg 80w, /assets/profile-pics/OyeOyeEsteban-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/OyeOyeEsteban-120.jpg" alt="Steve&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/OyeOyeEsteban-40.webp 40w, /assets/profile-pics/OyeOyeEsteban-80.webp 80w, /assets/profile-pics/OyeOyeEsteban-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/OyeOyeEsteban-40.jpg 40w, /assets/profile-pics/OyeOyeEsteban-80.jpg 80w, /assets/profile-pics/OyeOyeEsteban-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/OyeOyeEsteban-120.jpg" alt="Steve&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -486,9 +492,9 @@
       <a class="profile-link" href="https://twitter.com/jonsherin_" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/jonsherin_-40.webp 40w, /assets/profile-pics/jonsherin_-80.webp 80w, /assets/profile-pics/jonsherin_-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/jonsherin_-40.jpg 40w, /assets/profile-pics/jonsherin_-80.jpg 80w, /assets/profile-pics/jonsherin_-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/jonsherin_-120.jpg" alt="Jon Sherin&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/jonsherin_-40.webp 40w, /assets/profile-pics/jonsherin_-80.webp 80w, /assets/profile-pics/jonsherin_-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/jonsherin_-40.jpg 40w, /assets/profile-pics/jonsherin_-80.jpg 80w, /assets/profile-pics/jonsherin_-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/jonsherin_-120.jpg" alt="Jon Sherin&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -500,9 +506,9 @@
       <a class="profile-link" href="https://twitter.com/stegotorres" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/stegotorres-40.webp 40w, /assets/profile-pics/stegotorres-80.webp 80w, /assets/profile-pics/stegotorres-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/stegotorres-40.jpg 40w, /assets/profile-pics/stegotorres-80.jpg 80w, /assets/profile-pics/stegotorres-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/stegotorres-120.jpg" alt="Shayla&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/stegotorres-40.webp 40w, /assets/profile-pics/stegotorres-80.webp 80w, /assets/profile-pics/stegotorres-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/stegotorres-40.jpg 40w, /assets/profile-pics/stegotorres-80.jpg 80w, /assets/profile-pics/stegotorres-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/stegotorres-120.jpg" alt="Shayla&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -511,12 +517,12 @@
         
       </div>
     </item><item class="profile" id="animator320" data-name="Animator320" data-idx="34">
-      <a class="profile-link" href="https://twitter.com/animator320" target="_blank" rel="noopener">
+      <a class="profile-link" href="https://instagram.com/animator320" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/animator320-40.webp 40w, /assets/profile-pics/animator320-80.webp 80w, /assets/profile-pics/animator320-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/animator320-40.jpg 40w, /assets/profile-pics/animator320-80.jpg 80w, /assets/profile-pics/animator320-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/animator320-120.jpg" alt="Animator320&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/animator320-40.webp 40w, /assets/profile-pics/animator320-80.webp 80w, /assets/profile-pics/animator320-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/animator320-40.jpg 40w, /assets/profile-pics/animator320-80.jpg 80w, /assets/profile-pics/animator320-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/animator320-120.jpg" alt="Animator320&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -528,9 +534,9 @@
       <a class="profile-link" href="https://twitter.com/CarlLeCat" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/CarlLeCat-40.webp 40w, /assets/profile-pics/CarlLeCat-80.webp 80w, /assets/profile-pics/CarlLeCat-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/CarlLeCat-40.jpg 40w, /assets/profile-pics/CarlLeCat-80.jpg 80w, /assets/profile-pics/CarlLeCat-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/CarlLeCat-120.jpg" alt="Carl&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/CarlLeCat-40.webp 40w, /assets/profile-pics/CarlLeCat-80.webp 80w, /assets/profile-pics/CarlLeCat-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/CarlLeCat-40.jpg 40w, /assets/profile-pics/CarlLeCat-80.jpg 80w, /assets/profile-pics/CarlLeCat-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/CarlLeCat-120.jpg" alt="Carl&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -542,9 +548,9 @@
       <a class="profile-link" href="https://twitter.com/nissaelise" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/nissaelise-40.webp 40w, /assets/profile-pics/nissaelise-80.webp 80w, /assets/profile-pics/nissaelise-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/nissaelise-40.jpg 40w, /assets/profile-pics/nissaelise-80.jpg 80w, /assets/profile-pics/nissaelise-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/nissaelise-120.jpg" alt="Nissa&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/nissaelise-40.webp 40w, /assets/profile-pics/nissaelise-80.webp 80w, /assets/profile-pics/nissaelise-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/nissaelise-40.jpg 40w, /assets/profile-pics/nissaelise-80.jpg 80w, /assets/profile-pics/nissaelise-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/nissaelise-120.jpg" alt="Nissa&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -556,9 +562,9 @@
       <a class="profile-link" href="https://twitter.com/smeIIe" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/smeIIe-40.webp 40w, /assets/profile-pics/smeIIe-80.webp 80w, /assets/profile-pics/smeIIe-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/smeIIe-40.jpg 40w, /assets/profile-pics/smeIIe-80.jpg 80w, /assets/profile-pics/smeIIe-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/smeIIe-120.jpg" alt="Elle&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/smeIIe-40.webp 40w, /assets/profile-pics/smeIIe-80.webp 80w, /assets/profile-pics/smeIIe-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/smeIIe-40.jpg 40w, /assets/profile-pics/smeIIe-80.jpg 80w, /assets/profile-pics/smeIIe-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/smeIIe-120.jpg" alt="Elle&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -570,9 +576,9 @@
       <a class="profile-link" href="https://twitter.com/kimispice" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/kimispice-40.webp 40w, /assets/profile-pics/kimispice-80.webp 80w, /assets/profile-pics/kimispice-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/kimispice-40.jpg 40w, /assets/profile-pics/kimispice-80.jpg 80w, /assets/profile-pics/kimispice-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/kimispice-120.jpg" alt="Kimi&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/kimispice-40.webp 40w, /assets/profile-pics/kimispice-80.webp 80w, /assets/profile-pics/kimispice-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/kimispice-40.jpg 40w, /assets/profile-pics/kimispice-80.jpg 80w, /assets/profile-pics/kimispice-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/kimispice-120.jpg" alt="Kimi&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -584,9 +590,9 @@
       <a class="profile-link" href="https://twitter.com/jazzarcana" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/jazzarcana-40.webp 40w, /assets/profile-pics/jazzarcana-80.webp 80w, /assets/profile-pics/jazzarcana-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/jazzarcana-40.jpg 40w, /assets/profile-pics/jazzarcana-80.jpg 80w, /assets/profile-pics/jazzarcana-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/jazzarcana-120.jpg" alt="TitTat&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/jazzarcana-40.webp 40w, /assets/profile-pics/jazzarcana-80.webp 80w, /assets/profile-pics/jazzarcana-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/jazzarcana-40.jpg 40w, /assets/profile-pics/jazzarcana-80.jpg 80w, /assets/profile-pics/jazzarcana-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/jazzarcana-120.jpg" alt="TitTat&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -598,9 +604,9 @@
       <a class="profile-link" href="https://twitter.com/lotusfishicoot" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/lotusfishicoot-40.webp 40w, /assets/profile-pics/lotusfishicoot-80.webp 80w, /assets/profile-pics/lotusfishicoot-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/lotusfishicoot-40.jpg 40w, /assets/profile-pics/lotusfishicoot-80.jpg 80w, /assets/profile-pics/lotusfishicoot-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/lotusfishicoot-120.jpg" alt="Owen Fishback&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/lotusfishicoot-40.webp 40w, /assets/profile-pics/lotusfishicoot-80.webp 80w, /assets/profile-pics/lotusfishicoot-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/lotusfishicoot-40.jpg 40w, /assets/profile-pics/lotusfishicoot-80.jpg 80w, /assets/profile-pics/lotusfishicoot-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/lotusfishicoot-120.jpg" alt="Owen Fishback&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -612,9 +618,9 @@
       <a class="profile-link" href="https://twitter.com/fantishow" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/fantishow-40.webp 40w, /assets/profile-pics/fantishow-80.webp 80w, /assets/profile-pics/fantishow-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/fantishow-40.jpg 40w, /assets/profile-pics/fantishow-80.jpg 80w, /assets/profile-pics/fantishow-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/fantishow-120.jpg" alt="Fantishow&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/fantishow-40.webp 40w, /assets/profile-pics/fantishow-80.webp 80w, /assets/profile-pics/fantishow-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/fantishow-40.jpg 40w, /assets/profile-pics/fantishow-80.jpg 80w, /assets/profile-pics/fantishow-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/fantishow-120.jpg" alt="Fantishow&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -626,9 +632,9 @@
       <a class="profile-link" href="https://twitter.com/jonstraightaway" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/jonstraightaway-40.webp 40w, /assets/profile-pics/jonstraightaway-80.webp 80w, /assets/profile-pics/jonstraightaway-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/jonstraightaway-40.jpg 40w, /assets/profile-pics/jonstraightaway-80.jpg 80w, /assets/profile-pics/jonstraightaway-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/jonstraightaway-120.jpg" alt="Jon&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/jonstraightaway-40.webp 40w, /assets/profile-pics/jonstraightaway-80.webp 80w, /assets/profile-pics/jonstraightaway-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/jonstraightaway-40.jpg 40w, /assets/profile-pics/jonstraightaway-80.jpg 80w, /assets/profile-pics/jonstraightaway-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/jonstraightaway-120.jpg" alt="Jon&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -640,9 +646,9 @@
       <a class="profile-link" href="https://twitter.com/littledipster" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/littledipster-40.webp 40w, /assets/profile-pics/littledipster-80.webp 80w, /assets/profile-pics/littledipster-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/littledipster-40.jpg 40w, /assets/profile-pics/littledipster-80.jpg 80w, /assets/profile-pics/littledipster-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/littledipster-120.jpg" alt="Little Dipster&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/littledipster-40.webp 40w, /assets/profile-pics/littledipster-80.webp 80w, /assets/profile-pics/littledipster-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/littledipster-40.jpg 40w, /assets/profile-pics/littledipster-80.jpg 80w, /assets/profile-pics/littledipster-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/littledipster-120.jpg" alt="Little Dipster&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -654,9 +660,9 @@
       <a class="profile-link" href="https://twitter.com/IvanA1mighty" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/IvanA1mighty-40.webp 40w, /assets/profile-pics/IvanA1mighty-80.webp 80w, /assets/profile-pics/IvanA1mighty-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/IvanA1mighty-40.jpg 40w, /assets/profile-pics/IvanA1mighty-80.jpg 80w, /assets/profile-pics/IvanA1mighty-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/IvanA1mighty-120.jpg" alt="Ivan&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/IvanA1mighty-40.webp 40w, /assets/profile-pics/IvanA1mighty-80.webp 80w, /assets/profile-pics/IvanA1mighty-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/IvanA1mighty-40.jpg 40w, /assets/profile-pics/IvanA1mighty-80.jpg 80w, /assets/profile-pics/IvanA1mighty-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/IvanA1mighty-120.jpg" alt="Ivan&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -668,9 +674,9 @@
       <a class="profile-link" href="https://twitter.com/ian_sampletext" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/ian_sampletext-40.webp 40w, /assets/profile-pics/ian_sampletext-80.webp 80w, /assets/profile-pics/ian_sampletext-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/ian_sampletext-40.jpg 40w, /assets/profile-pics/ian_sampletext-80.jpg 80w, /assets/profile-pics/ian_sampletext-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/ian_sampletext-120.jpg" alt="Iandef&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/ian_sampletext-40.webp 40w, /assets/profile-pics/ian_sampletext-80.webp 80w, /assets/profile-pics/ian_sampletext-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/ian_sampletext-40.jpg 40w, /assets/profile-pics/ian_sampletext-80.jpg 80w, /assets/profile-pics/ian_sampletext-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/ian_sampletext-120.jpg" alt="Iandef&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -682,9 +688,9 @@
       <a class="profile-link" href="https://twitter.com/habanerotadpole" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/habanerotadpole-40.webp 40w, /assets/profile-pics/habanerotadpole-80.webp 80w, /assets/profile-pics/habanerotadpole-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/habanerotadpole-40.jpg 40w, /assets/profile-pics/habanerotadpole-80.jpg 80w, /assets/profile-pics/habanerotadpole-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/habanerotadpole-120.jpg" alt="Tadpole&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/habanerotadpole-40.webp 40w, /assets/profile-pics/habanerotadpole-80.webp 80w, /assets/profile-pics/habanerotadpole-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/habanerotadpole-40.jpg 40w, /assets/profile-pics/habanerotadpole-80.jpg 80w, /assets/profile-pics/habanerotadpole-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/habanerotadpole-120.jpg" alt="Tadpole&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -696,9 +702,9 @@
       <a class="profile-link" href="https://twitter.com/Lajbros" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/Lajbros-40.webp 40w, /assets/profile-pics/Lajbros-80.webp 80w, /assets/profile-pics/Lajbros-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/Lajbros-40.jpg 40w, /assets/profile-pics/Lajbros-80.jpg 80w, /assets/profile-pics/Lajbros-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/Lajbros-120.jpg" alt="Lukas Barrera&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/Lajbros-40.webp 40w, /assets/profile-pics/Lajbros-80.webp 80w, /assets/profile-pics/Lajbros-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/Lajbros-40.jpg 40w, /assets/profile-pics/Lajbros-80.jpg 80w, /assets/profile-pics/Lajbros-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/Lajbros-120.jpg" alt="Lukas Barrera&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -710,9 +716,9 @@
       <a class="profile-link" href="https://twitter.com/EathanCool" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/EathanCool-40.webp 40w, /assets/profile-pics/EathanCool-80.webp 80w, /assets/profile-pics/EathanCool-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/EathanCool-40.jpg 40w, /assets/profile-pics/EathanCool-80.jpg 80w, /assets/profile-pics/EathanCool-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/EathanCool-120.jpg" alt="Ethan Menegakis&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/EathanCool-40.webp 40w, /assets/profile-pics/EathanCool-80.webp 80w, /assets/profile-pics/EathanCool-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/EathanCool-40.jpg 40w, /assets/profile-pics/EathanCool-80.jpg 80w, /assets/profile-pics/EathanCool-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/EathanCool-120.jpg" alt="Ethan Menegakis&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -724,9 +730,9 @@
       <a class="profile-link" href="https://twitter.com/AtroxChobatsu" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/AtroxChobatsu-40.webp 40w, /assets/profile-pics/AtroxChobatsu-80.webp 80w, /assets/profile-pics/AtroxChobatsu-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/AtroxChobatsu-40.jpg 40w, /assets/profile-pics/AtroxChobatsu-80.jpg 80w, /assets/profile-pics/AtroxChobatsu-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/AtroxChobatsu-120.jpg" alt="Atrox&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/AtroxChobatsu-40.webp 40w, /assets/profile-pics/AtroxChobatsu-80.webp 80w, /assets/profile-pics/AtroxChobatsu-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/AtroxChobatsu-40.jpg 40w, /assets/profile-pics/AtroxChobatsu-80.jpg 80w, /assets/profile-pics/AtroxChobatsu-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/AtroxChobatsu-120.jpg" alt="Atrox&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -738,9 +744,9 @@
       <a class="profile-link" href="https://twitter.com/nocontext_jones" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/nocontext_jones-40.webp 40w, /assets/profile-pics/nocontext_jones-80.webp 80w, /assets/profile-pics/nocontext_jones-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/nocontext_jones-40.jpg 40w, /assets/profile-pics/nocontext_jones-80.jpg 80w, /assets/profile-pics/nocontext_jones-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/nocontext_jones-120.jpg" alt="robot-jones&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/nocontext_jones-40.webp 40w, /assets/profile-pics/nocontext_jones-80.webp 80w, /assets/profile-pics/nocontext_jones-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/nocontext_jones-40.jpg 40w, /assets/profile-pics/nocontext_jones-80.jpg 80w, /assets/profile-pics/nocontext_jones-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/nocontext_jones-120.jpg" alt="robot-jones&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -752,9 +758,9 @@
       <a class="profile-link" href="https://twitter.com/rwappin" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/rwappin-40.webp 40w, /assets/profile-pics/rwappin-80.webp 80w, /assets/profile-pics/rwappin-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/rwappin-40.jpg 40w, /assets/profile-pics/rwappin-80.jpg 80w, /assets/profile-pics/rwappin-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/rwappin-120.jpg" alt="Rwappin&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/rwappin-40.webp 40w, /assets/profile-pics/rwappin-80.webp 80w, /assets/profile-pics/rwappin-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/rwappin-40.jpg 40w, /assets/profile-pics/rwappin-80.jpg 80w, /assets/profile-pics/rwappin-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/rwappin-120.jpg" alt="Rwappin&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -766,9 +772,9 @@
       <a class="profile-link" href="https://twitter.com/UrbsNG" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/UrbsNG-40.webp 40w, /assets/profile-pics/UrbsNG-80.webp 80w, /assets/profile-pics/UrbsNG-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/UrbsNG-40.jpg 40w, /assets/profile-pics/UrbsNG-80.jpg 80w, /assets/profile-pics/UrbsNG-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/UrbsNG-120.jpg" alt="Urbs&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/UrbsNG-40.webp 40w, /assets/profile-pics/UrbsNG-80.webp 80w, /assets/profile-pics/UrbsNG-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/UrbsNG-40.jpg 40w, /assets/profile-pics/UrbsNG-80.jpg 80w, /assets/profile-pics/UrbsNG-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/UrbsNG-120.jpg" alt="Urbs&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -780,9 +786,9 @@
       <a class="profile-link" href="https://twitter.com/taterderg" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/taterderg-40.webp 40w, /assets/profile-pics/taterderg-80.webp 80w, /assets/profile-pics/taterderg-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/taterderg-40.jpg 40w, /assets/profile-pics/taterderg-80.jpg 80w, /assets/profile-pics/taterderg-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/taterderg-120.jpg" alt="Pash&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/taterderg-40.webp 40w, /assets/profile-pics/taterderg-80.webp 80w, /assets/profile-pics/taterderg-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/taterderg-40.jpg 40w, /assets/profile-pics/taterderg-80.jpg 80w, /assets/profile-pics/taterderg-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/taterderg-120.jpg" alt="Pash&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -794,9 +800,9 @@
       <a class="profile-link" href="https://twitter.com/zachyouidiot" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/zachyouidiot-40.webp 40w, /assets/profile-pics/zachyouidiot-80.webp 80w, /assets/profile-pics/zachyouidiot-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/zachyouidiot-40.jpg 40w, /assets/profile-pics/zachyouidiot-80.jpg 80w, /assets/profile-pics/zachyouidiot-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/zachyouidiot-120.jpg" alt="Zach&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/zachyouidiot-40.webp 40w, /assets/profile-pics/zachyouidiot-80.webp 80w, /assets/profile-pics/zachyouidiot-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/zachyouidiot-40.jpg 40w, /assets/profile-pics/zachyouidiot-80.jpg 80w, /assets/profile-pics/zachyouidiot-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/zachyouidiot-120.jpg" alt="Zach&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -808,9 +814,9 @@
       <a class="profile-link" href="https://twitter.com/KingSluggy" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/KingSluggy-40.webp 40w, /assets/profile-pics/KingSluggy-80.webp 80w, /assets/profile-pics/KingSluggy-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/KingSluggy-40.jpg 40w, /assets/profile-pics/KingSluggy-80.jpg 80w, /assets/profile-pics/KingSluggy-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/KingSluggy-120.jpg" alt="Andrew Kepple&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/KingSluggy-40.webp 40w, /assets/profile-pics/KingSluggy-80.webp 80w, /assets/profile-pics/KingSluggy-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/KingSluggy-40.jpg 40w, /assets/profile-pics/KingSluggy-80.jpg 80w, /assets/profile-pics/KingSluggy-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/KingSluggy-120.jpg" alt="Andrew Kepple&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -822,9 +828,9 @@
       <a class="profile-link" href="https://twitter.com/RoboKanti" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/RoboKanti-40.webp 40w, /assets/profile-pics/RoboKanti-80.webp 80w, /assets/profile-pics/RoboKanti-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/RoboKanti-40.jpg 40w, /assets/profile-pics/RoboKanti-80.jpg 80w, /assets/profile-pics/RoboKanti-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/RoboKanti-120.jpg" alt="Kanti&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/RoboKanti-40.webp 40w, /assets/profile-pics/RoboKanti-80.webp 80w, /assets/profile-pics/RoboKanti-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/RoboKanti-40.jpg 40w, /assets/profile-pics/RoboKanti-80.jpg 80w, /assets/profile-pics/RoboKanti-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/RoboKanti-120.jpg" alt="Kanti&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -836,9 +842,9 @@
       <a class="profile-link" href="https://twitter.com/spinalpalm" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/spinalpalm-40.webp 40w, /assets/profile-pics/spinalpalm-80.webp 80w, /assets/profile-pics/spinalpalm-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/spinalpalm-40.jpg 40w, /assets/profile-pics/spinalpalm-80.jpg 80w, /assets/profile-pics/spinalpalm-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/spinalpalm-120.jpg" alt="Chris Gassler&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/spinalpalm-40.webp 40w, /assets/profile-pics/spinalpalm-80.webp 80w, /assets/profile-pics/spinalpalm-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/spinalpalm-40.jpg 40w, /assets/profile-pics/spinalpalm-80.jpg 80w, /assets/profile-pics/spinalpalm-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/spinalpalm-120.jpg" alt="Chris Gassler&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -850,9 +856,9 @@
       <a class="profile-link" href="https://twitter.com/datweasel_life" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/datweasel_life-40.webp 40w, /assets/profile-pics/datweasel_life-80.webp 80w, /assets/profile-pics/datweasel_life-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/datweasel_life-40.jpg 40w, /assets/profile-pics/datweasel_life-80.jpg 80w, /assets/profile-pics/datweasel_life-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/datweasel_life-120.jpg" alt="Papalegba&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/datweasel_life-40.webp 40w, /assets/profile-pics/datweasel_life-80.webp 80w, /assets/profile-pics/datweasel_life-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/datweasel_life-40.jpg 40w, /assets/profile-pics/datweasel_life-80.jpg 80w, /assets/profile-pics/datweasel_life-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/datweasel_life-120.jpg" alt="Papalegba&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -864,9 +870,9 @@
       <a class="profile-link" href="https://twitter.com/wesenns" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/wesenns-40.webp 40w, /assets/profile-pics/wesenns-80.webp 80w, /assets/profile-pics/wesenns-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/wesenns-40.jpg 40w, /assets/profile-pics/wesenns-80.jpg 80w, /assets/profile-pics/wesenns-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/wesenns-120.jpg" alt="Wes&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/wesenns-40.webp 40w, /assets/profile-pics/wesenns-80.webp 80w, /assets/profile-pics/wesenns-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/wesenns-40.jpg 40w, /assets/profile-pics/wesenns-80.jpg 80w, /assets/profile-pics/wesenns-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/wesenns-120.jpg" alt="Wes&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -878,9 +884,9 @@
       <a class="profile-link" href="https://twitter.com/voidknife" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/voidknife-40.webp 40w, /assets/profile-pics/voidknife-80.webp 80w, /assets/profile-pics/voidknife-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/voidknife-40.jpg 40w, /assets/profile-pics/voidknife-80.jpg 80w, /assets/profile-pics/voidknife-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/voidknife-120.jpg" alt="DAXE&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/voidknife-40.webp 40w, /assets/profile-pics/voidknife-80.webp 80w, /assets/profile-pics/voidknife-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/voidknife-40.jpg 40w, /assets/profile-pics/voidknife-80.jpg 80w, /assets/profile-pics/voidknife-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/voidknife-120.jpg" alt="DAXE&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -892,9 +898,9 @@
       <a class="profile-link" href="https://twitter.com/andobiki" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/andobiki-40.webp 40w, /assets/profile-pics/andobiki-80.webp 80w, /assets/profile-pics/andobiki-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/andobiki-40.jpg 40w, /assets/profile-pics/andobiki-80.jpg 80w, /assets/profile-pics/andobiki-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/andobiki-120.jpg" alt="Andobiki&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/andobiki-40.webp 40w, /assets/profile-pics/andobiki-80.webp 80w, /assets/profile-pics/andobiki-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/andobiki-40.jpg 40w, /assets/profile-pics/andobiki-80.jpg 80w, /assets/profile-pics/andobiki-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/andobiki-120.jpg" alt="Andobiki&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -906,9 +912,9 @@
       <a class="profile-link" href="https://twitter.com/anuswarhol" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/anuswarhol-40.webp 40w, /assets/profile-pics/anuswarhol-80.webp 80w, /assets/profile-pics/anuswarhol-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/anuswarhol-40.jpg 40w, /assets/profile-pics/anuswarhol-80.jpg 80w, /assets/profile-pics/anuswarhol-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/anuswarhol-120.jpg" alt="Jeremy&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/anuswarhol-40.webp 40w, /assets/profile-pics/anuswarhol-80.webp 80w, /assets/profile-pics/anuswarhol-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/anuswarhol-40.jpg 40w, /assets/profile-pics/anuswarhol-80.jpg 80w, /assets/profile-pics/anuswarhol-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/anuswarhol-120.jpg" alt="Jeremy&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -920,9 +926,9 @@
       <a class="profile-link" href="https://twitter.com/ReefBlowPlay" target="_blank" rel="noopener">
         
     <picture class="profile-pic">
-      <source type="image/webp" data-srcset="/assets/profile-pics/ReefBlowPlay-40.webp 40w, /assets/profile-pics/ReefBlowPlay-80.webp 80w, /assets/profile-pics/ReefBlowPlay-120.webp 120w" sizes="any">
-      <source type="image/jpeg" data-srcset="/assets/profile-pics/ReefBlowPlay-40.jpg 40w, /assets/profile-pics/ReefBlowPlay-80.jpg 80w, /assets/profile-pics/ReefBlowPlay-120.jpg 120w" sizes="any">
-      <img class="profile-pic lazyload" data-src="/assets/profile-pics/ReefBlowPlay-120.jpg" alt="Justbrian&apos;s profile picture" width="120" height="auto">
+      <source type="image/webp" data-srcset="/assets/profile-pics/ReefBlowPlay-40.webp 40w, /assets/profile-pics/ReefBlowPlay-80.webp 80w, /assets/profile-pics/ReefBlowPlay-120.webp 120w" sizes="40px">
+      <source type="image/jpeg" data-srcset="/assets/profile-pics/ReefBlowPlay-40.jpg 40w, /assets/profile-pics/ReefBlowPlay-80.jpg 80w, /assets/profile-pics/ReefBlowPlay-120.jpg 120w" sizes="40px">
+      <img class="profile-pic lazyload" data-src="/assets/profile-pics/ReefBlowPlay-120.jpg" alt="Justbrian&apos;s profile picture" width="40" height="40">
     </picture>
   
       </a>
@@ -934,7 +940,7 @@
     <picture class="tpplogo">
       <source type="image/webp" data-srcset="/assets/tpplogo/tpplogo-100.webp 100w, /assets/tpplogo/tpplogo-200.webp 200w, /assets/tpplogo/tpplogo-300.webp 300w, /assets/tpplogo/tpplogo-400.webp 400w" sizes="100px">
       <source type="image/png" data-srcset="/assets/tpplogo/tpplogo-100.png 100w, /assets/tpplogo/tpplogo-200.png 200w, /assets/tpplogo/tpplogo-300.png 300w, /assets/tpplogo/tpplogo-400.png 400w" sizes="100px">
-      <img class="tpplogo lazyload" data-src="/assets/tpplogo/tpplogo-400.png" alt="Tire Pressure Project logo" width="400" height="auto">
+      <img class="tpplogo lazyload" data-src="/assets/tpplogo/tpplogo-400.png" alt="Tire Pressure Project logo" width="100" height="100">
     </picture>
   
     </list>
@@ -983,10 +989,10 @@
         <!-- <p id="frame-count"></p> -->
       </div>
       <div id="seek-bar-container">
-        <input id="seek-bar" type="range" min="0" max="59" value="0" step="any">
+        <input id="seek-bar" type="range" min="0" max="59" value="0" step="any" aria-label="Seek video frames">
       </div>
     </footer>
-  </div>
+  </main>
 
   <script defer src="/__/firebase/7.2.1/firebase-app.js"></script>
   <script defer src="/__/firebase/7.2.1/firebase-analytics.js"></script>

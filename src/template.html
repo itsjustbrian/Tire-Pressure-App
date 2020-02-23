@@ -1,13 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
   <base href="/">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#010629">
+  <meta name="msapplication-TileColor" content="#2b5797">
+  <meta name="theme-color" content="#010137">
 
-  <title>Tire Pressure Project</title>
-
+  <title>Tire Pressure</title>
   <meta name="Description" content="The official Tire Pressure Project app, where you can explore every frame drawn to recreate the iconic scene from Spongebob">
 
   <script>history.scrollRestoration = "manual"</script>
@@ -22,7 +28,7 @@
 </head>
 
 <body>
-  <div id="main-content">
+  <main id="main-content">
     <div id="video-area">
       <div id="frame-stage" hidden></div>
       <audio id="audio" src="assets/tire_pressure_audio.m4a" muted preload="auto"></audio>
@@ -77,10 +83,10 @@
         <!-- <p id="frame-count"></p> -->
       </div>
       <div id="seek-bar-container">
-        <input id="seek-bar" type="range" min="0" max="59" value="0" step="any">
+        <input id="seek-bar" type="range" min="0" max="59" value="0" step="any" aria-label="Seek video frames">
       </div>
     </footer>
-  </div>
+  </main>
 
   <script defer src="/__/firebase/7.2.1/firebase-app.js"></script>
   <script defer src="/__/firebase/7.2.1/firebase-analytics.js"></script>

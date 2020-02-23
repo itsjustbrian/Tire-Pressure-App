@@ -3,7 +3,7 @@ const { createPicture } = require("../utils/common-utils");
 
 import "./index.css";
 import lazySizes from "lazysizes";
-import { $, aFrame, htmlToTemplate } from "./helpers";
+import { $, htmlToTemplate } from "./helpers";
 
 lazySizes.cfg.loadMode = 1;
 lazySizes.cfg.expand = 300;
@@ -22,7 +22,6 @@ let seeking = false;
 let seekingDuringPlayback = false;
 let muted = true;
 let repeatActive = false;
-let currentModal;
 
 // Delay loading of inactive frames
 // window.addEventListener('fonts-loaded', () => {
@@ -73,13 +72,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     const framePictureOptions = {
       path: config.image_sets.video_frames.path + (i + 1),
       srcSizes: config.image_sets.video_frames.sizes,
+      sizes: '(min-width: 901px) calc(100vw - 325px), 100vw',
+      width: 2100,
+      height: 900,
       alt: `${profile.name}'s frame`
     };
     const videoFrameTemplate = htmlToTemplate(createPicture(framePictureOptions));
     const imgElement = videoFrameTemplate.querySelector('img') as HTMLElement;
     const videoFrameElement = videoFrameTemplate.firstChild as HTMLElement;
-    imgElement.style.cssText = 'opacity: 0;';
-    imgElement.id = 'video';
+    imgElement.style.opacity = '0';
+    imgElement.classList.add('video');
     imgElement.onload = () => {
       imgElement.style.cssText = 'opacity: 1; transition: opacity 0.5s ease 0s;';
       videoFrameElement.dataset.loaded = 'true';
@@ -149,17 +151,21 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const openAboutPage = () => {
     const modal = new Modal();
+    modal.overflow = 'auto';
     const aboutPage = document.createElement('div');
     aboutPage.id = 'about-page';
     aboutPage.innerHTML = `
       <h1>Tire Pressure App</h1>
       <h2>Made with ❤ by <a href="https://twitter.com/ReefBlowPlay" target="_blank" rel="noopener">justbrian</a></h2>
-      <h3>Pro tip</h3>
-      <p>Click on the video to see the original drawing in ULTRA HD</p>
+      <h3>Pro tips:</h3>
+      <ul>
+        <li>Click on the video to see the original drawing in ULTRA HD</li>
+        <li>Click on a profile picture to go support that artist on social media</li>
+      </ul>
       <h3>Experiencing poor performance?</h3>
       <p>The Tire Pressure App is at its best and fanciest and fastest on Chrome/Chromium browser(s) on desktops and modern phones</p>
       <h3>Something broken on Microsoft Edge?</h3>
-      <p>Yeah... it really do be like that sorry. You can try using the new Edge from <a href="https://www.microsoft.com/en-us/edge" target="_blank" rel="noopener">this link</a>, which should work much better
+      <p>Yeah... it really do be like that sorry. You can try using the <a href="https://www.microsoft.com/en-us/edge" target="_blank" rel="noopener">new Edge</a>, which should work much better
     `;
     modal.content = aboutPage;
     modal.header.style.backgroundColor = 'rgba(37, 53, 87, 0.9)';
@@ -173,6 +179,9 @@ document.addEventListener('DOMContentLoaded', async () => {
       if (targetNode.nodeName === 'ITEM') break;
       targetNode = targetNode.parentElement;
     }
+
+    analytics.logEvent('profile_selected', { name: targetNode.dataset.name, id: targetNode.id });
+
     if (targetNode.dataset.idx)
       renderFrame((parseInt(targetNode.dataset.idx)))
     else if (targetNode.id === developerId)
@@ -280,6 +289,10 @@ document.addEventListener('DOMContentLoaded', async () => {
       this._content.append(userContent);
     }
 
+    set overflow(overflow) {
+      this._content.style.overflowY = overflow;
+    }
+
     get header() {
       return this._content.querySelector('#modal-header') as HTMLElement;
     }
@@ -296,23 +309,36 @@ document.addEventListener('DOMContentLoaded', async () => {
       this.closeButton.addEventListener('click', this.close);
       this._content.addEventListener('click', this.onModalClicked);
       document.body.style.overflowY = 'hidden';
-      $('main-content').style.filter = 'blur(10px)';
+      this._content.style.opacity = '0';
+      this._content.style.transform = 'translate3d(0, 40px, 0)';
+      this._content.style.transition = 'none';
       document.body.append(this._content);
       this._content.hidden = false;
       this.closeButton.focus();
+      animationFramePromise(() => {
+        this._content.style.opacity = '1';
+        this._content.style.transform = 'translate3d(0, 0, 0)';
+        this._content.style.transition = 'opacity 0.4s ease 0s, transform 0.4s ease 0s';
+      });
     }
 
     close() {
       this.closeButton.removeEventListener('click', this.close);
-      document.body.style.overflowY = '';
-      $('main-content').style.filter = 'none';
-      this._content.remove();
-      this._content.hidden = true;
+      this._content.removeEventListener('click', this.onModalClicked);
+      this._content.addEventListener('transitionend', () => {
+        this._content.remove();
+        this._content.hidden = true;
+        document.body.style.overflowY = '';
+      }, { once: true });
+      this._content.style.opacity = '0';
+      this._content.style.transform = 'translate3d(0, 40px, 0)';
+      this._content.style.transition = 'opacity 0.2s ease 0s, transform 0.2s ease 0s';
     }
   }
 
   function onVideoClicked(event: any) {
     const profile = getProfileFromIndex(currentFrameIdx);
+    analytics.logEvent('frame_selected', { name: profile.name, id: profile.id });
     openModalWithImage(`${config.artist_frames_path}${currentFrameIdx + 1}.png`, `${profile.name}'s high-res frame`);
   }
 
@@ -325,6 +351,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       path: config.image_sets.logos.path + 'tpp_loading_spinner',
       srcSizes: config.image_sets.logos.sizes,
       sizes: '100px',
+      width: 100,
+      height: 100,
       alt: 'Loading spinner',
       imgClass: 'loading-spinner',
       baseFormat: 'png'
@@ -358,6 +386,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   };
 
+  // Kick it off
   renderFrame(currentFrameIdx);
 
   (async () => {
