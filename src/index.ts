@@ -163,9 +163,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         <li>Click on a profile picture to go support that artist on social media</li>
       </ul>
       <h3>Experiencing poor performance?</h3>
-      <p>The Tire Pressure App is at its best and fanciest and fastest on Chrome/Chromium browser(s) on desktops and modern phones</p>
-      <h3>Something broken on Microsoft Edge?</h3>
-      <p>Yeah... it really do be like that sorry. You can try using the <a href="https://www.microsoft.com/en-us/edge" target="_blank" rel="noopener">new Edge</a>, which should work much better
+      <p>The Tire Pressure App is at its best and fanciest and fastest on Chrome/Chromium browser(s) on desktops and modern phones. Keep in mind every browser on iPhones is just Safari in disguise</p>
+      <h3>Something broken on Microsoft Edge, FireFox, or Safari?</h3>
+      <p>Yeah... it really do be like that sorry. If you're on Edge, you can try using the <a href="https://www.microsoft.com/en-us/edge" target="_blank" rel="noopener">new Edge</a>, which should fix most of it's problems</p>
+      <h3>Have a question? Or a problem with the site you'd like me to know about?</h3>
+      <p>Feel free to DM or @ me on <a href="https://twitter.com/ReefBlowPlay" target="_blank" rel="noopener">my Twitter</a></p>
     `;
     modal.content = aboutPage;
     modal.header.style.backgroundColor = 'rgba(37, 53, 87, 0.9)';
