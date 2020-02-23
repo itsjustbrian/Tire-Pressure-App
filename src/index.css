@@ -37,16 +37,15 @@ hr {
 
 body {
   /* height: 100vh; */
+  min-height: 100vh;
   margin: 0;
   font-family: 'Roboto', sans-serif;
   line-height: 1.5;
-  min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   color: #ffffff;
   background-color: #0b0c1b;
   font-size: 16px;
   overflow-x: hidden;
-
   /* scroll-padding-top: 424px; */
 }
 
@@ -161,7 +160,7 @@ button::-moz-focus-inner {
 
 #modal {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   position: fixed;
   top: 0;
   display: flex;
@@ -201,6 +200,7 @@ button::-moz-focus-inner {
 }
 
 .modal-image {
+  position: absolute;
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -236,11 +236,16 @@ button::-moz-focus-inner {
   top: 50%;
   margin-top: -50px;
   animation: spin 3s linear infinite;
+  -webkit-animation: spin 3s linear infinite;
   will-change: transform;
 }
 
 @keyframes spin { 
   100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
     transform: rotate(360deg);
   } 
 }
@@ -252,14 +257,9 @@ button::-moz-focus-inner {
   min-height: 115px;
   width: 100%;
   border-radius: 5px 5px 0 0;
-  background-color: rgba(0, 0, 55, .5);
-}
-@supports (backdrop-filter: blur(5px)) or (-webkit-backdrop-filter: blur(5px)) {
-  #video-controls {
-    background-color: rgba(255, 255, 255, .15);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-  }
+  background-color: rgba(255, 255, 255, .15);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 }
 
 #main-content.about-page-active #video-controls {
@@ -359,7 +359,7 @@ button::-moz-focus-inner {
       #000037
     );
 
-  will-change: transform;
+  /* will-change: transform; */
 }
 
 #profile-list.unresolved {
@@ -493,6 +493,10 @@ svg.youtube { width: 24px; height: 24px }
   height: 100%;
 }
 .icon-button:enabled:active > svg {
+  -webkit-transform: scale(0.9);
+  -moz-transform: scale(0.9);
+  -ms-transform: scale(0.9);
+  -o-transform: scale(0.9);
   transform: scale(0.9);
   opacity: 0.7;
 }
@@ -516,6 +520,10 @@ svg.youtube { width: 24px; height: 24px }
 }
 
 #frame-backward > svg {
+  -webkit-transform: scaleX(-1);
+  -moz-transform: scaleX(-1);
+  -ms-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
   transform: scaleX(-1);
 }
 
@@ -531,12 +539,20 @@ svg.youtube { width: 24px; height: 24px }
   padding-right: 8px;
 }
 #frame-forward:enabled:active > svg {
+  -webkit-transform: translateX(3px) scale(0.95);
+  -moz-transform: translateX(3px) scale(0.95);
+  -ms-transform: translateX(3px) scale(0.95);
+  -o-transform: translateX(3px) scale(0.95);
   transform: translateX(3px) scale(0.95);
 }
 #frame-backward {
   padding-left: 8px;
 }
 #frame-backward:enabled:active > svg {
+  -webkit-transform: translateX(-3px) scale(-0.95);
+  -moz-transform: translateX(-3px) scale(-0.95);
+  -ms-transform: translateX(-3px) scale(-0.95);
+  -o-transform: translateX(-3px) scale(-0.95);
   transform: translateX(-3px) scale(-0.95);
 }
 

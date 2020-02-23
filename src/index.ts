@@ -9,7 +9,7 @@ lazySizes.cfg.loadMode = 1;
 lazySizes.cfg.expand = 300;
 
 const listItemHeight = 56;
-const responsiveWidth = 800
+const responsiveWidth = 900
 const smallScreen = window.matchMedia(`(max-width: ${responsiveWidth}px)`);
 
 const developerId = 'ReefBlowPlay';
@@ -33,14 +33,14 @@ let repeatActive = false;
 document.addEventListener('DOMContentLoaded', async () => {
 
   const firebaseConfig = {
-    apiKey: "AIzaSyBUFQbnpxvzWLsnmwJ3V_9l-3QRNfu_Y9I",
-    authDomain: "tire-pressure-project.firebaseapp.com",
-    databaseURL: "https://tire-pressure-project.firebaseio.com",
-    projectId: "tire-pressure-project",
-    storageBucket: "tire-pressure-project.appspot.com",
-    messagingSenderId: "594805679759",
-    appId: "1:594805679759:web:d003cce18f56b08fd372fa",
-    measurementId: "G-DRK34XYMLJ"
+    apiKey: "AIzaSyA0NDsEdwCR6QK5oRUE-pW_nTRTeXs-ZYI",
+    authDomain: "projecttirepressure.firebaseapp.com",
+    databaseURL: "https://projecttirepressure.firebaseio.com",
+    projectId: "projecttirepressure",
+    storageBucket: "projecttirepressure.appspot.com",
+    messagingSenderId: "267245128918",
+    appId: "1:267245128918:web:bf74c4fa507de14c4b4d77",
+    measurementId: "G-R0XT1CYQVF"
   };
 
   firebase.initializeApp(firebaseConfig);
@@ -207,12 +207,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 
   playPauseButton.addEventListener('click', async (event) => {
-    if (currentFrameIdx === config.num_frames - 1) {
-      await renderFrame(0);
-      playVideo();
-    } else {
-      playingVideo ? pauseVideo() : playVideo();
-    }
+    playingVideo ? pauseVideo() : playVideo();
   });
 
   repeatButton.addEventListener('click', () => {
@@ -243,17 +238,15 @@ document.addEventListener('DOMContentLoaded', async () => {
   }, { passive: true });
 
   let intervalId: any;
-  const playVideo = () => {
+  const playVideo = async () => {
     if (playingVideo) return;
     playingVideo = true;
+    if (currentFrameIdx === config.num_frames - 1) await renderFrame(0);
     audio.play();
     intervalId = setInterval(() => {
-      if (currentFrameIdx < videoFrames.length - 1) {
-        renderFrame(currentFrameIdx + 1);
-      }
-      else if (repeatActive) {
-        renderFrame(0, 'repeat');
-      } else pauseVideo();
+      if (currentFrameIdx < videoFrames.length - 1) renderFrame(currentFrameIdx + 1);
+      else if (repeatActive) renderFrame(0, 'repeat');
+      else pauseVideo();
     }, (1 / 24) * 1000);
   };
   const pauseVideo = (shouldRender = true) => {
@@ -344,7 +337,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const openModalWithImage = (src, alt) => {
     const modal = new Modal();
-    modal.header.style.minHeight = '0';
+    //modal.header.style.minHeight = '0';
     const modalContent = document.createDocumentFragment();
 
     const loadingSpinnerOptions = {
@@ -368,6 +361,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     newImg.alt = alt;
     newImg.hidden = true;
     newImg.src = src;
+    newImg.style.willChange = 'transform, opacity';
+    newImg.style.zIndex = '-1';
     newImg.decode().then(() => {
       newImg.hidden = false;
       loadingSpinner.hidden = true;
@@ -390,21 +385,28 @@ document.addEventListener('DOMContentLoaded', async () => {
   renderFrame(currentFrameIdx);
 
   (async () => {
-    if ('ResizeObserver' in window === false) {
-      const module = await import('@juggle/resize-observer');
-      window['ResizeObserver'] = module.ResizeObserver;
+    if (!('scrollBehavior' in document.documentElement.style)) {
+      const smoothScroll = await import('smoothscroll-polyfill');
+      smoothScroll.polyfill();
     }
-    
-    const ro = new ResizeObserver((entries: any) => {
-      for (let entry of entries) {
-        if (entry.contentRect.height > 0) {
-          scrollToProfile(currentFrameIdx);
-        } else if (document.scrollingElement) {
-          document.scrollingElement.scrollTop = document.scrollingElement.scrollHeight;
-        }
-      }
-    });
-    ro.observe($('video-area'));
   })();
+
+  // (async () => {
+  //   if ('ResizeObserver' in window === false) {
+  //     const module = await import('@juggle/resize-observer');
+  //     window['ResizeObserver'] = module.ResizeObserver;
+  //   }
+    
+  //   const ro = new ResizeObserver((entries: any) => {
+  //     for (let entry of entries) {
+  //       if (entry.contentRect.height > 0) {
+  //         scrollToProfile(currentFrameIdx);
+  //       } else if (document.scrollingElement) {
+  //         document.scrollingElement.scrollTop = document.scrollingElement.scrollHeight;
+  //       }
+  //     }
+  //   });
+  //   ro.observe($('video-area'));
+  // })();
 
 });

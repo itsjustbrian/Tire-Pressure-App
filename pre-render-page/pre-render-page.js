@@ -39,6 +39,23 @@ try {(async () => {
   const publicAssetsPath = path.join(config.project_dir, '/public/assets');
   await del(publicAssetsPath, {force: true});
   await ncpAsync(devAssetsPath, publicAssetsPath);
+
+  // Remove original size assets
+  for (let setName of Object.keys(config.image_sets)) {
+    const setConfig = config.image_sets[setName];
+    for (let file of fs.readdirSync(path.join(config.project_dir, '/public', setConfig.path))) {
+      const [id, format] = file.split('.');
+      // File doesn't have "-size" postfix
+      if (!parseInt(id.split('-')[1])) {
+        await del(path.join(config.project_dir, '/public', setConfig.path, file), { force: true });
+      }
+    }
+  }
+
+  // Straggler
+  await del(path.join(config.project_dir, '/public/assets/background/tppbg.png'), { force: true });
+
+  // Move favicons to root
   await ncpAsync(path.join(publicAssetsPath, '/favicon'), path.join(config.project_dir, '/public'));
   await del(path.join(publicAssetsPath, '/favicon'), {force: true});
 
