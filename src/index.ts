@@ -4,6 +4,7 @@ const { createPicture } = require("../utils/common-utils");
 import "./index.css";
 import lazySizes from "lazysizes";
 import { $, htmlToTemplate } from "./helpers";
+import RangeTouch from 'rangetouch';
 
 lazySizes.cfg.loadMode = 1;
 lazySizes.cfg.expand = 300;
@@ -57,6 +58,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const profileList = $('profile-list') as HTMLElement;
   const videoFrameLoadingSpinner = document.querySelector('#video-area .loading-spinner') as HTMLElement;
   videoFrameLoadingSpinner.hidden = false;
+  new RangeTouch(seekBar, { thumbWidth: 19 });
 
   const getProfileFromIndex = (idx) => {
     const profileElement = document.querySelector(`item[data-idx="${idx}"]`) as HTMLElement;
@@ -124,6 +126,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       // Auto scroll to selected profile
       scrollToProfile(frameIdx, playingVideo || seekingDuringPlayback || source === 'seek' ? 'auto' : 'smooth');
 
+
       // Enable/disable buttons
       let frameForwardButtonDisabled = frameIdx === config.num_frames - 1;
       let frameBackwardButtonDisabled = frameIdx === 0;
@@ -163,7 +166,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         <li>Click on a profile picture to go support that artist on social media</li>
       </ul>
       <h3>Experiencing poor performance?</h3>
-      <p>The Tire Pressure App is at its best and fanciest and fastest on Chrome/Chromium browser(s) on desktops and modern phones. Keep in mind every browser on iPhones is just Safari in disguise</p>
+      <p>The Tire Pressure App is at its best and fanciest and fastest on Chrome/Chromium browser(s) on desktops and modern phones. Keep in mind every browser on iOS is actually just Safari in disguise. And Safari on iOS SUCKS at handling the raw power of the official Tire Pressure Project App</p>
       <h3>Something broken on Microsoft Edge, FireFox, or Safari?</h3>
       <p>Yeah... it really do be like that sorry. If you're on Edge, you can try using the <a href="https://www.microsoft.com/en-us/edge" target="_blank" rel="noopener">new Edge</a>, which should fix most of it's problems</p>
       <h3>Have a question? Or a problem with the site you'd like me to know about?</h3>
@@ -243,7 +246,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const playVideo = async () => {
     if (playingVideo) return;
     playingVideo = true;
-    if (currentFrameIdx === config.num_frames - 1) await renderFrame(0);
+    if (currentFrameIdx === config.num_frames - 1) await renderFrame(0, 'repeat');
     audio.play();
     intervalId = setInterval(() => {
       if (currentFrameIdx < videoFrames.length - 1) renderFrame(currentFrameIdx + 1);
