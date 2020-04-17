@@ -6,15 +6,16 @@ const defaultOptionsMap = {
     function: 'jpeg',
     options: {
       progressive: true,
-      quality: 90
+      quality: 80
     }
   },
   'png': {
     function: 'png',
+    quality: 90
   },
   'webp': {
     function: 'webp',
-    quality: 90
+    quality: 80
   }
 }
 

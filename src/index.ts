@@ -13,7 +13,7 @@ const listItemHeight = 56;
 const responsiveWidth = 900
 const smallScreen = window.matchMedia(`(max-width: ${responsiveWidth}px)`);
 
-const developerId = 'ReefBlowPlay';
+const developerId = 'yeahjustbrian';
 const backgroundArtistId = 'voidknife';
 const videoFrames: Array<HTMLPictureElement> = [];
 //const frameStageQueue: Array<HTMLElement> = [];
@@ -159,18 +159,20 @@ document.addEventListener('DOMContentLoaded', async () => {
     aboutPage.id = 'about-page';
     aboutPage.innerHTML = `
       <h1>Tire Pressure App</h1>
-      <h2>Made with ❤ by <a href="https://twitter.com/ReefBlowPlay" target="_blank" rel="noopener">justbrian</a></h2>
+      <h2>Made with ❤ by <a href="https://twitter.com/${developerId}" target="_blank" rel="noopener">justbrian</a></h2>
       <h3>Pro tips:</h3>
       <ul>
-        <li>Click on the video to see the original drawing in ULTRA HD</li>
-        <li>Click on a profile picture to go support that artist on social media</li>
+        <li>Click on the video when it's paused on a frame to see that drawing in full resolution</li>
+        <li>Click on a profile picture to go to that artist's social media</li>
       </ul>
-      <h3>Experiencing poor performance?</h3>
-      <p>The Tire Pressure App is at its best and fanciest and fastest on Chrome/Chromium browser(s) on desktops and modern phones. Keep in mind every browser on iOS is actually just Safari in disguise. And Safari on iOS SUCKS at handling the raw power of the official Tire Pressure Project App</p>
-      <h3>Something broken on Microsoft Edge, FireFox, or Safari?</h3>
-      <p>Yeah... it really do be like that sorry. If you're on Edge, you can try using the <a href="https://www.microsoft.com/en-us/edge" target="_blank" rel="noopener">new Edge</a>, which should fix most of it's problems</p>
+      <h3>Experiencing poor performance or visual glitches?</h3>
+      <p>The Tire Pressure App is at its best and fanciest and fastest on Chrome/Chromium browser(s) on desktops and modern phones. Keep in mind every browser on iPhone/iOS is actually just Safari in disguise, and Safari on iPhone/iOS really SUCKS at handling the raw power of the official Tire Pressure Project App</p>
+      <h3>Something horribly broken on Microsoft Edge?</h3>
+      <p>You can try using the <a href="https://www.microsoft.com/en-us/edge" target="_blank" rel="noopener">new Edge</a>, which should work better</p>
       <h3>Have a question? Or a problem with the site you'd like me to know about?</h3>
-      <p>Feel free to DM or @ me on <a href="https://twitter.com/ReefBlowPlay" target="_blank" rel="noopener">my Twitter</a></p>
+      <p>Feel free to DM or @ me on <a href="https://twitter.com/${developerId}" target="_blank" rel="noopener">my Twitter</a></p>
+      <h2>Acknowledgements</h2>
+      <p></p>
     `;
     modal.content = aboutPage;
     modal.header.style.backgroundColor = 'rgba(37, 53, 87, 0.9)';

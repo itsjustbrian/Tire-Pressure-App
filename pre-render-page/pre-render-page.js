@@ -121,7 +121,7 @@ try {(async () => {
 
   data.extra_frame_artists.forEach((profileData) => $('.profile-list').append(generateProfile(profileData, 'Extra Frame Artist')));
 
-  $('.profile-list').append(generateProfile(data.app_dev, 'App Developer'));
+  $('.profile-list').append(generateProfile(data.app_dev, 'Click me!'));
 
   const logoOptions = {
     path: path.join(config.image_sets.logos.path, 'tpplogo'),
