@@ -172,7 +172,13 @@ document.addEventListener('DOMContentLoaded', async () => {
       <h3>Have a question? Or a problem with the site you'd like me to know about?</h3>
       <p>Feel free to DM or @ me on <a href="https://twitter.com/${developerId}" target="_blank" rel="noopener">my Twitter</a></p>
       <h2>Acknowledgements</h2>
-      <p></p>
+      <p><a href="https://twitter.com/tomfulp" target="_blank" rel="noopener">@tomfulp</a> Thank you for your endorsement</p>
+      <p><a href="https://twitter.com/ivana1mighty" target="_blank" rel="noopener">@ivana1mighty</a> Thank you for your support and creation of the HTML5 player</p>
+      <p><a href="https://twitter.com/jetseeofficial" target="_blank" rel="noopener">@jetseeofficial</a> Thank you for all the voice work</p>
+      <p>A big thank you to all of the artists who made this possible and anyone who supported us</p>
+      <p>Thank you (nazar amulet emoji) Nazar Amulet for bringing light to an otherwise dark and demon-ridden path</p>
+      <p>Thanks to God, Buddha, Boddah, Yeezus, Jeezus, Larry, Curly, and Moe</p>
+      <h5>© 2020 TPP LLC Inc.</h5>
     `;
     modal.content = aboutPage;
     modal.header.style.backgroundColor = 'rgba(37, 53, 87, 0.9)';
