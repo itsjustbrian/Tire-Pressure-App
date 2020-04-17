@@ -173,10 +173,10 @@ document.addEventListener('DOMContentLoaded', async () => {
       <p>Feel free to DM or @ me on <a href="https://twitter.com/${developerId}" target="_blank" rel="noopener">my Twitter</a></p>
       <h2>Acknowledgements</h2>
       <p><a href="https://twitter.com/tomfulp" target="_blank" rel="noopener">@tomfulp</a> Thank you for your endorsement</p>
-      <p><a href="https://twitter.com/ivana1mighty" target="_blank" rel="noopener">@ivana1mighty</a> Thank you for your support and creation of the HTML5 player</p>
+      <p><a href="https://twitter.com/ivana1mighty" target="_blank" rel="noopener">@ivana1mighty</a> Thank you for your support and creation of the TPP HTML5 player on Newgrounds</p>
       <p><a href="https://twitter.com/jetseeofficial" target="_blank" rel="noopener">@jetseeofficial</a> Thank you for all the voice work</p>
       <p>A big thank you to all of the artists who made this possible and anyone who supported us</p>
-      <p>Thank you (nazar amulet emoji) Nazar Amulet for bringing light to an otherwise dark and demon-ridden path</p>
+      <p>Thank you 🧿 Nazar Amulet for bringing light to an otherwise dark and demon-ridden path</p>
       <p>Thanks to God, Buddha, Boddah, Yeezus, Jeezus, Larry, Curly, and Moe</p>
       <h5>© 2020 TPP LLC Inc.</h5>
     `;
