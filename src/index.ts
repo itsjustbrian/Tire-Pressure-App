@@ -12,6 +12,7 @@ lazySizes.cfg.expand = 300;
 const listItemHeight = 56;
 const responsiveWidth = 900
 const smallScreen = window.matchMedia(`(max-width: ${responsiveWidth}px)`);
+const iOS = /(iPad|iPhone|iPod)/g.test(navigator.userAgent);
 
 const developerId = 'yeahjustbrian';
 const backgroundArtistId = 'voidknife';
@@ -82,10 +83,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     const videoFrameTemplate = htmlToTemplate(createPicture(framePictureOptions));
     const imgElement = videoFrameTemplate.querySelector('img') as HTMLElement;
     const videoFrameElement = videoFrameTemplate.firstChild as HTMLElement;
-    imgElement.style.opacity = '0';
+    if (!iOS) imgElement.style.opacity = '0';
     imgElement.classList.add('video');
     imgElement.onload = () => {
-      imgElement.style.cssText = 'opacity: 1; transition: opacity 0.5s ease 0s;';
+      if (!iOS) imgElement.style.cssText = 'opacity: 1; transition: opacity 0.5s ease 0s;';
       videoFrameElement.dataset.loaded = 'true';
       if (i === currentFrameIdx) {
         videoFrameLoadingSpinner.hidden = true;

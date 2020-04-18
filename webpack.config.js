@@ -10,7 +10,7 @@ module.exports = (env, { mode }) => ({
   entry: './src/index.ts',
   devtool: (mode !== 'production') ? 'inline-source-map' : 'source-map',
   output: {
-    filename: (mode !== 'production') ? '[name].js' : '[name].[contenthash].js',
+    filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, 'public')
   },
   optimization: {
@@ -45,7 +45,7 @@ module.exports = (env, { mode }) => ({
     //   to: path.resolve(__dirname, 'public', 'assets'),
     // }]),
     new MiniCssExtractPlugin({
-      filename: (mode !== 'production') ? '[name].css' : '[name].[contenthash].css',
+      filename: '[name].[contenthash].css',
     }),
     new HtmlWebpackPlugin({
       filename: "index.html",
